@@ -1,8 +1,25 @@
 ////////////////////////////////////////////////////////
 
-- IMPLEMENT USER CREATION
+----------- IMPLEMENT USER CREATION
 
   As a non-user i should be able to create an account with the following details :
+
+>> email, password, phone number.
+
+If the creation process is successful
+   the system will allocate a unique id to the new user.
+       The system will validate the following data:
+               - email to be not blank and not empty and to be unique in our data base
+               - password to be not blank and not empty & password must match with confirm password field
+               - confirm password to be not blank and not empty & password must match with confirm password field
+               - phone number to be not blank and not empty and to have a @Pattern ragexp
+		- the ROLE will be automatically set to CLIENT
+   If the creation process fails the system will show an appropriate error message, and will keep the non-user on
+the same page.
+
+----------- IMPLEMENT ADMIN CREATION
+
+  As a ADMIN ROLE i should be able to create an account with any role and the following details:
 email, password, phone number.
 If the creation process is successful
    the system will allocate a unique id to the new user.
@@ -11,55 +28,119 @@ If the creation process is successful
                - password to be not blank and not empty password must match with confirm password field
                - confirm password to be not blank and not empty password must match with confirm password field
                - phone number to be not blank and not empty and to have a @Pattern ragexp
-		- the ROLE will be automatically CLIENT
-   If the creation process fails the system will show an appropriate error message, and will keep the non-user on
-the same page ( user registration page )
+		        - the role i can chose is client, moderator, admin.
+   If the creation process fails the system will show an appropriate error message, and will keep the ADMIN on
+the same page.
 
-- IMLEMENT UPDATE USER / USER PROFILE
+
+----------- IMPLEMENT UPDATE ADMIN PAGE
+  As a Admin i should be able to update any details on user.
+
+----------- IMPLEMENT UPDATE MODERATOR PAGE
+  As a Moderator i should be able to update any details except email, role, position, salary.
+
+----------- IMPLEMENT UPDATE CLIENT / CLIENT PROFILE
 
   As a CLIENT i should be able to Update my account with the following details :
-password, phone number, first name, last name, address
+
+>> password, phone number, first name, last name, address.
+
 If the update process is successful
    the system will show an appropriate message.
        The system will validate the following data:
                - first name to be not blank and not empty
-		- last name to be not blank and not empty
+		        - last name to be not blank and not empty
                - password to be not blank and not empty password must match with confirm password field
                - confirm password to be not blank and not empty password must match with confirm password field
                - phone number to be not blank and not empty and to have a @Pattern ragexp
    If the update process fails the system will show an appropriate error message, and will keep the user on
-the same page ( user update page )
+the same page.
 
-- IMPLEMENT CLIENT VIEW PRODUCTS
+----------- IMPLEMENT FORGOT PASSWORD -- nice to have --
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////
+MVP STAGE ONE COMPLETED
+
+//////////////////////////////////
+
+----------- IMPLEMENT ADD PRODUCT ( ADMIN )
+  As a Admin i should be able to add a product and their details :
+
+>> name, model, category, description, price.
+
+If the update process is successful
+   the system will show an appropriate message.
+       The system will validate the following data:
+               - name to be not blank and not empty
+		        - model to be not blank and not empty
+		        - category to be not blank and not empty
+		        - description to be not blank and not empty
+		        - price to be not blank and not empty
+
+   If the update process fails the system will show an appropriate error message, and will keep the user on
+the same page.
+
+
+
+----------- IMPLEMENT CLIENT VIEW PRODUCTS
 
   As a CLIENT i should be able to view all products and their details :
-name, model, category, description, price
 
-- IMPLEMENT CLIENT BUY SYSTEM ( ORDER CREATION )
+>> name, model, category, description, price.
+Filters for model, category & price.
 
-  As a CLIENT i should be able to create a order with multiple products :
-legit busket where i can add multiple products, to see quantity of products along with their name's and total price
+
+----------- IMPLEMENT CLIENT BUY SYSTEM ( ORDER CREATION (Send order) )
+
+  As a CLIENT i should be able to create a order with multiple products : an cart
+  where i can add multiple products, to see quantity of products along with their
+  name's and total price, edit my cart, delete products from cart
 
 If the creation process is successful and the BUY button is activated
    the system will allocate a unique id to the new order and will send a email to the ADMIN with the order number
 then will show an appropriate message to the CLIENT.
 
 ////////////////////////////////////////////////////////
-
-- IMPLEMENT MODERATOR CREATION
-
-  As a ADMIN ROLE i should be able to create an account with MODERATOR ROLE and the following details:
-email, password, phone number.
-If the creation process is successful
-   the system will allocate a unique id to the new user.
-       The system will validate the following data:
-               - email to be not blank and not empty and to be unique in our data base
-               - password to be not blank and not empty password must match with confirm password field
-               - confirm password to be not blank and not empty password must match with confirm password field
-               - phone number to be not blank and not empty and to have a @Pattern ragexp
-		- the ROLE will be automatically MODERATOR
-   If the creation process fails the system will show an appropriate error message, and will keep the ADMIN on
-the same page ( user MODERATOR registration page )
+MVP STAGE TWO COMPLETED
 
 
+----------- IMPLEMENT UPDATE CART CONTENT ( CLIENT )
+
+----------- IMPLEMENT ADD PROJECT ( ADMIN )
+
+----------- IMPLEMENT VIEW ALL PROJECTS ( ADMIN & MODERATOR )
+
+----------- IMPLEMENT UPDATE PROJECT ( ADMIN & MODERATOR )
+
+----------- IMPLEMENT DELETE PROJECT ( ADMIN )
+
+----------- IMPLEMENT VIEW PROJECT BY ID ( ADMIN & MODERATOR )
+
+----------- IMPLEMENT ADD TASK ( ADMIN )
+
+----------- IMPLEMENT VIEW ALL TASKS ( ADMIN )
+
+----------- IMPLEMENT UPDATE TASK ( ADMIN & MODERATOR )
+
+----------- IMPLEMENT DELETE TASK ( ADMIN )
+
+----------- IMPLEMENT VIEW TASK BY ID ( ADMIN & MODERATOR )
+
+/////////////////////////////////////////////////////////////
+MPV STAGE TREE COMPLETED
 
