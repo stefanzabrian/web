@@ -1,0 +1,20 @@
+Online shop + business management //  full-service radio tower & building communications sites construction, specialized in all types of construction and managing
+
+Java Web App used for managing a business operations and its products shop
+
+As a visitor on app i should be able to visit the main page ( index ) to see all products and to be able to create a new account ( user )
+The app will have multiple user roles: client, moderator(employee), admin(master).
+Client role will have the following access:  Read for Product and will be able to make a Orders based on products, ( CRUD on basket?? /order? ? )
+As Client i should be able to edit my user information like : password, phone number, first name, last name, address
+The Moderator(employee) will be able to be a part of a task and project, as he will work on the project and have multiple tasks to complete
+ while working on the same project and also to participate on multiple projects at the same time
+Moderator(employee) role will have Read and Update on few parts of the:    Task: comments     and     Project: task
+Admin(master) will have CRUD for everything, legit master.
+
+
+One window for CRUD on USER ( email, password, phone number, role, user profile )
+One window for CRUD on USER_PROFILE ( first name, last name, position, salary, address )
+One window for CRUD on PRODUCT ( name, model, category, description, price )
+One window for CRUD on ORDER ( order number, date of order, status, total amount, ordered by )
+One window for CRUD on TASK ( number, name, structure, category, status, comments, completion date, asignee)
+One window for CRUD on PROJECT ( name, description, type, category, status, priority, price, start_date, end_date, asignee, task )
