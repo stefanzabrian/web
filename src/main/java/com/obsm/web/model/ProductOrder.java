@@ -17,12 +17,15 @@ public class ProductOrder {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+    @Column(name = "product_price")
+    private Double productPrice;
 
     public ProductOrder() {
     }
 
-    public ProductOrder(Integer quantity) {
+    public ProductOrder(Integer quantity, Double productPrice) {
         this.quantity = quantity;
+        this.productPrice = productPrice;
     }
 
     public Integer getQuantity() {
@@ -55,5 +58,13 @@ public class ProductOrder {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
     }
 }
