@@ -4,10 +4,8 @@ import com.obsm.web.model.constant.OrderStatus;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.List;
-
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,18 +15,13 @@ public class Order {
     private String orderNumber;
     @Column(name = "date_of_order")
     private Date dateOfOrder;
-
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
+    @Column(name = "order_status")
     private OrderStatus status;
     @Column(name = "total_amount")
     private Integer totalAmount;
     @ManyToOne
     @JoinColumn(name = "client_profile_id")
     private ClientProfile clientProfile;
-
-    @OneToMany(mappedBy = "order")
-    private List<ProductOrder> productOrder;
 
     public Order() {
     }
@@ -87,13 +80,4 @@ public class Order {
     public void setClientProfile(ClientProfile clientProfile) {
         this.clientProfile = clientProfile;
     }
-
-    public List<ProductOrder> getProductOrder() {
-        return productOrder;
-    }
-
-    public void setProductOrder(List<ProductOrder> productOrder) {
-        this.productOrder = productOrder;
-    }
-
 }
