@@ -58,18 +58,8 @@ the same page.
 
 ----------- IMPLEMENT FORGOT PASSWORD -- nice to have --
 
-
-
-
-
-
-
-
-
-
-
-
-
+   As an user i should be able to reset my password, i should receive an email with a
+6 digit random code to confirm email verification before allowing to reset any on any user.
 
 
 
@@ -96,7 +86,6 @@ If the update process is successful
 the same page.
 
 
-
 ----------- IMPLEMENT CLIENT VIEW PRODUCTS
 
   As a CLIENT i should be able to view all products and their details :
@@ -108,8 +97,8 @@ Filters for model, category & price.
 ----------- IMPLEMENT CLIENT BUY SYSTEM ( ORDER CREATION (Send order) )
 
   As a CLIENT i should be able to create a order with multiple products : an cart
-  where i can add multiple products, to see quantity of products along with their
-  name's and total price, edit my cart, delete products from cart
+where i can add multiple products, to see quantity of products along with their
+name's and total price, edit my cart, delete products from cart
 
 If the creation process is successful and the BUY button is activated
    the system will allocate a unique id to the new order and will send a email to the ADMIN with the order number
@@ -121,25 +110,121 @@ MVP STAGE TWO COMPLETED
 
 ----------- IMPLEMENT UPDATE CART CONTENT ( CLIENT )
 
+  As i Client i should be able to update my cart, i could add/delete items from cart.
+
+
+
 ----------- IMPLEMENT ADD PROJECT ( ADMIN )
 
+  As a Admin i should be able to create projects with the following data:
+
+>> name, description, type, category, status, priority, price, start date, end date.
+
+If the creation process is successful
+   the system will show an appropriate message.
+       The system will validate the following data:
+               - name to be not blank and not empty
+		        - description to be not blank and not empty
+		        - type to be not blank and not empty
+		        - category to be not blank and not empty
+		        - status to be not blank and not empty
+		        - priority to be not blank and not empty
+		        - price can be null
+		        - start date can be null
+		        - end date can be null
+
+   If the creation process fails the system will show an appropriate error message, and will keep the user on
+the same page.
+
 ----------- IMPLEMENT VIEW ALL PROJECTS ( ADMIN & MODERATOR )
+  As a user i should be able to view all products and their details :
+
+>> name, description, type, category, status, priority, price, start date, end date.
+Filters for model, category & price.
 
 ----------- IMPLEMENT UPDATE PROJECT ( ADMIN & MODERATOR )
+  As a user i should be able to update projects with the following data:
+
+>> name, description, type, category, status, priority, price, start date, end date.
+
+If the update process is successful
+   the system will show an appropriate message.
+       The system will validate the following data:
+               - name to be not blank and not empty
+		        - description to be not blank and not empty
+		        - type to be not blank and not empty
+		        - category to be not blank and not empty
+		        - status to be not blank and not empty
+		        - priority to be not blank and not empty
+		        - price can be null
+		        - start date can be null
+		        - end date can be null
+
+   If the update process fails the system will show an appropriate error message, and will keep the user on
+the same page.
 
 ----------- IMPLEMENT DELETE PROJECT ( ADMIN )
 
+  As an Admin i should be able to Delete any project.
+
 ----------- IMPLEMENT VIEW PROJECT BY ID ( ADMIN & MODERATOR )
+
+   As an user i should be able to view any project by ID with the following details :
+>> name, description, type, category, status, priority, price, start date, end date.
+
 
 ----------- IMPLEMENT ADD TASK ( ADMIN )
 
------------ IMPLEMENT VIEW ALL TASKS ( ADMIN )
+  As a Admin i should be able to create tasks with the following data:
+
+>> number, name, structure, category, status, comments, completion date.
+
+If the creation process is successful
+   the system will show an appropriate message.
+       The system will validate the following data:
+               - number to be not blank and not empty
+               - name to be not blank and not empty
+		        - description to be not blank and not empty
+		        - structure to be not blank and not empty
+		        - category to be not blank and not empty
+		        - status to be not blank and not empty
+		        - comments can be null
+		        - completion date can be bull
+
+   If the creation process fails the system will show an appropriate error message, and will keep the user on
+the same page.
+
+----------- IMPLEMENT VIEW ALL TASKS ( ADMIN & MODERATOR )
+   As an user i should be able to view all tasks with the following details :
+>> number, name, structure, category, status, comments, completion date.
 
 ----------- IMPLEMENT UPDATE TASK ( ADMIN & MODERATOR )
 
+  As a Admin i should be able to update projects with the following data:
+
+>> number, name, structure, category, status, comments, completion date.
+
+If the update process is successful
+   the system will show an appropriate message.
+       The system will validate the following data:
+                             - number to be not blank and not empty
+                              - name to be not blank and not empty
+               		        - description to be not blank and not empty
+               		        - structure to be not blank and not empty
+               		        - category to be not blank and not empty
+               		        - status to be not blank and not empty
+               		        - comments can be null
+               		        - completion date can be bull
+
+   If the update process fails the system will show an appropriate error message, and will keep the user on
+the same page.
+
 ----------- IMPLEMENT DELETE TASK ( ADMIN )
+  As an Admin i should be able to Delete any task.
 
 ----------- IMPLEMENT VIEW TASK BY ID ( ADMIN & MODERATOR )
+   As an user i should be able to view any task by ID with the following details :
+>> number, name, structure, category, status, comments, completion date.
 
 /////////////////////////////////////////////////////////////
 MPV STAGE TREE COMPLETED
