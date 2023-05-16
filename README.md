@@ -4,7 +4,7 @@ Java Web App used for managing a business operations on products and projects
 ## Project Description
 
 
-Online Shop & Business Management Operations.
+Online Shop & Business Operations Management.
 In this application our user is split in two, one part is Client view and the second is Master.
 As Client perspective I am looking for being able to visit the main page,
 to see all products, register & have access to log in.
