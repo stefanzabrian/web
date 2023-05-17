@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 @Entity
-@Table(name = "orders")
+@Table(name = "client_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +15,7 @@ public class Order {
     private String orderNumber;
     @Column(name = "date_of_order")
     private Date dateOfOrder;
+    @Enumerated(EnumType.STRING)
     @Column(name = "order_status")
     private OrderStatus status;
     @Column(name = "total_amount")

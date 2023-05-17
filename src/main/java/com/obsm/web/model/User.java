@@ -19,7 +19,6 @@ public class User {
     @Email
     @Column(name = "email", unique = true)
     private String email;
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull(message = "* Complete the field")
     @NotBlank(message = "* Complete the field")
     @Column(name = "password")

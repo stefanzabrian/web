@@ -13,6 +13,7 @@ public class Product {
     private Integer id;
     @Column(name = "name")
     private String name;
+    @Enumerated(EnumType.STRING)
     @Column(name = "model")
     private ProductModel model;
     @Enumerated(EnumType.STRING)
