@@ -14,7 +14,38 @@ public class MainController {
     public String showIndexPage() {
         return "index";
     }
-
+    @GetMapping("/about")
+    public String showAboutPage() {
+        return "about";
+    }
+    @GetMapping("/contact")
+    public String showContactPage() {
+        return "contact";
+    }
+    @GetMapping("/pricing")
+    public String showPricingPage() {
+        return "pricing";
+    }
+    @GetMapping("/faq")
+    public String showFaqPage() {
+        return "faq";
+    }
+    @GetMapping("/blog-home")
+    public String showBlogHomePage() {
+        return "blog-home";
+    }
+    @GetMapping("/blog-post")
+    public String showBlogPostPage() {
+        return "blog-post";
+    }
+    @GetMapping("/portfolio-overview")
+    public String showPortfolioOverviewPage() {
+        return "portfolio-overview";
+    }
+    @GetMapping("/portfolio-item")
+    public String showPortfolioItemPage() {
+        return "portfolio-item";
+    }
     @GetMapping("/forgot-password")
     public String showForgotPasswordPage() {
         return "forgot-password";
