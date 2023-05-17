@@ -26,6 +26,16 @@ public class UserRegistrationDTO {
     //@Pattern(regexp = "")
     private String phoneNumber;
 
+    public UserRegistrationDTO() {
+    }
+
+    public UserRegistrationDTO(String email, String password, String confirmPassword, String phoneNumber) {
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getEmail() {
         return email;
     }

@@ -9,8 +9,13 @@ public class MainController {
     public String login() {
         return "/login";
     }
-    @GetMapping("/index")
+    @GetMapping({"/index", "/","/home"})
     public String showIndexPage(){
         return "index";
     }
+    @GetMapping("/forgot-password")
+    public String forgotPasswordPage(){
+        return "forgot-password";
+    }
+
 }
