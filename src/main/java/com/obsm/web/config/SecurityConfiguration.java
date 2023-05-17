@@ -19,15 +19,20 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
+                // restricted access
+                //.requestMatchers("/addProduct").hasRole("ADMIN")
+                .requestMatchers("/register-admin").hasAuthority("ADMIN")
+                .requestMatchers("/update-admin-profile").hasAnyAuthority("ADMIN", "MODERATOR")
+                // public access
                 .requestMatchers(
-                        "/javax",
+                        "/javax/**",
                         "/css/**",
                         "/img/**",
                         "/js/**",
                         "/vendor/**",
-                        "/webjars",
+                        "/webjars/**",
                         "/forgot-password",
-                        "/register/**"
+                        "/register"
                 ).permitAll()
                 .anyRequest()
                 .authenticated()
@@ -45,5 +50,8 @@ public class SecurityConfiguration {
                 .logoutSuccessUrl("/login?logout").permitAll()
                 .and()
                 .build();
+
+        //  .antMatchers("/user/**").hasRole("USER")
+        //  .antMatchers("/admin/**", "/product/new", "/product/delete").hasRole("ADMIN")
     }
 }

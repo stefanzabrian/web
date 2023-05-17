@@ -9,7 +9,7 @@ OBSM-7 Configure Spring Security
 OBSM-8 Add login page
 OBSM-9 Add Client register page (public user creation)
 OBSM-10 Add Admin Creation page (private only for admin role)
-OBSM-11 Add User update page (client & user profiles) -- nice to have --
+OBSM-11 Add Client & Admin Profiles update page (client & user profiles) -- nice to have --
 OBSM-12 Add forgot password page -- nice to have --
 //// MVP STAGE 1 COMPLETED
 

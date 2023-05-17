@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
     Optional<User> findByEmail(String email);
-    User create(
+    void create(
             String email,
             String password,
             String phoneNumber,

@@ -6,16 +6,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
     @GetMapping("/login")
-    public String login() {
-        return "/login";
+    public String showLoginPage() {
+        return "login";
     }
-    @GetMapping({"/index", "/","/home"})
-    public String showIndexPage(){
+
+    @GetMapping({"/index", "/", "/home"})
+    public String showIndexPage() {
         return "index";
     }
+
     @GetMapping("/forgot-password")
-    public String forgotPasswordPage(){
+    public String showForgotPasswordPage() {
         return "forgot-password";
+    }
+
+    @GetMapping("/update-client-profile")
+    public String showClientProfileUpdatePage() {
+        return "update-client-profile";
+    }
+    @GetMapping("/update-admin-profile")
+    public String showAdminProfileUpdatePage() {
+        return "update-client-profile";
     }
 
 }

@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
         this.passwordEncoder = passwordEncoder;
     }
     @Override
-    public User create(
+    public void create(
             String email,
             String password,
             String phoneNumber,
@@ -38,10 +38,10 @@ public class UserServiceImpl implements UserService{
 
         userRepository.save(user);
 
-        return new User(email,
+        /*return new User(email,
                 "secret",
                 phoneNumber,
-                role);
+                role);*/
     }
 
     @Override

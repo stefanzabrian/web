@@ -2,6 +2,7 @@ package com.obsm.web.controller;
 
 import com.obsm.web.controller.dto.UserDTO;
 import com.obsm.web.model.User;
+import com.obsm.web.model.constant.ProductCategory;
 import com.obsm.web.model.constant.UserRole;
 import com.obsm.web.service.UserService;
 import jakarta.validation.Valid;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/admin-register")
+@RequestMapping("/register-admin")
 public class AdminRegistrationController {
     private final UserService userService;
 
@@ -30,12 +31,16 @@ public class AdminRegistrationController {
 
     @GetMapping()
     public String showAdminRegisterPage() {
-        return "admin-register";
+        return "register-admin";
     }
 
     @ModelAttribute("roles")
     public UserRole[] getUserRole() {
         return UserRole.values();
+    }
+    @ModelAttribute("categories")
+    public ProductCategory[] getProductCategory() {
+        return ProductCategory.values();
     }
 
     @PostMapping
@@ -50,7 +55,7 @@ public class AdminRegistrationController {
             result.rejectValue("email", null, "Email already exists");
         }
         if (result.hasErrors()) {
-            return "admin-register";
+            return "register-admin";
         }
 
         userService.create(
@@ -60,7 +65,7 @@ public class AdminRegistrationController {
                 userDTO.getRole()
         );
 
-        return "redirect:/admin-register?success";
+        return "redirect:/register-admin?success";
 
     }
 }

@@ -22,12 +22,12 @@ public class Product {
     @Column(name = "description")
     private String description;
     @Column(name = "price")
-    private Double price;
+    private String price;
 
     public Product() {
     }
 
-    public Product(String name, ProductModel model, ProductCategory category, String description, Double price) {
+    public Product(String name, ProductModel model, ProductCategory category, String description, String price) {
         this.name = name;
         this.model = model;
         this.category = category;
@@ -75,11 +75,11 @@ public class Product {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }
