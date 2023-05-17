@@ -20,7 +20,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
                 // restricted access
-                //.requestMatchers("/addProduct").hasRole("ADMIN")
+                .requestMatchers("/addProduct").hasRole("ADMIN")
                 .requestMatchers("/register-admin").hasAuthority("ADMIN")
                 .requestMatchers("/update-admin-profile").hasAnyAuthority("ADMIN", "MODERATOR")
                 // public access
