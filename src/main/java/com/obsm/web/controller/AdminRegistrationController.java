@@ -38,6 +38,7 @@ public class AdminRegistrationController {
     public UserRole[] getUserRole() {
         return UserRole.values();
     }
+
     @ModelAttribute("categories")
     public ProductCategory[] getProductCategory() {
         return ProductCategory.values();

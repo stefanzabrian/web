@@ -60,6 +60,7 @@ public class ProductController {
 
         return "redirect:/addProduct?success";
     }
+
     @GetMapping("/portfolio-item/{id}")
     public String showPortfolioItemByIdPage(
             @PathVariable("id")
@@ -71,11 +72,23 @@ public class ProductController {
 
         List<ProductCategory> categories = Arrays.asList(ProductCategory.values());
         List<ProductModel> models = Arrays.asList(ProductModel.values());
-        model.addAttribute("product",product);
+        model.addAttribute("product", product);
         model.addAttribute("categories", categories);
         model.addAttribute("models", models);
 
         return "portfolio-item";
+    }
+
+    @GetMapping("/portfolio-overview")
+    public String showAllItems(Model model) {
+        List<Product> product = productService.findAll();
+        List<ProductModel> models = Arrays.asList(ProductModel.values());
+        List<ProductCategory> categories = Arrays.asList(ProductCategory.values());
+
+        model.addAttribute("products", product);
+        model.addAttribute("models", models);
+        model.addAttribute("categories", categories);
+        return "portfolio-overview";
     }
 
 
