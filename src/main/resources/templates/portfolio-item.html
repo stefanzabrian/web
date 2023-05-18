@@ -47,6 +47,7 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li><a class="dropdown-item" th:href="@{/portfolio-overview}">Portfolio Overview</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/addProduct}">Add item</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -103,7 +104,7 @@
                                     <span class="text" th:text="${product.price}"> Buy</span>
                                 </a>
 
-                                <a th:href="@{/index}" class="btn btn-light btn-icon-split btn-sm">
+                                <a th:href="@{/updateProduct/{id}(id=${product.id})}" class="btn btn-light btn-icon-split btn-sm">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-info-circle"></i>
                                 </span>
@@ -115,6 +116,10 @@
                                     <i class="fas fa-trash"></i>
                                 </span>
                                     <span class="text">Delete</span>
+                                </a>
+                                <hr>
+                                <a th:href="@{/portfolio-overview}" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Back to Portfolio Overview
                                 </a>
 
                                 <!-- Item cu buton de buy edit si delete si view on click -->

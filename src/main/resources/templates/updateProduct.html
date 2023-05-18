@@ -76,8 +76,8 @@
                     <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
                         <div class="text-center mb-5">
                             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                            <h1 th:if="${param.success}" class="fw-bolder">You just added a new Product!</h1>
-                            <h1 th:if="!${param.success}" class="fw-bolder">Add a new Product</h1>
+                            <h1 th:if="${param.success}" class="fw-bolder">You just updated a Product!</h1>
+                            <h1 th:if="!${param.success}" class="fw-bolder">Update Product</h1>
                             <h1 th:if="${param.error}" class="fw-bolder">Oops...</h1>
 
                             <p class="lead fw-normal text-muted mb-0">Enter details below then hit Submit button :)</p>
@@ -91,7 +91,7 @@
                                 <!-- To make this form functional, sign up at-->
                                 <!-- https://startbootstrap.com/solution/contact-forms-->
                                 <!-- to get an API token!-->
-                                <form th:action="@{/addProduct}" th:object="${product}" method="post" class="user">
+                                <form th:action="@{/updateProduct/{id}(id=${product.id})}" th:object="${product}" method="post" class="user">
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <label for="name">Name</label>
@@ -122,6 +122,7 @@
                                                     <option th:each="model : ${models}"
                                                             th:value="${model.name()}"
                                                             th:text="${model}"
+                                                            th:selected="${product.model == model}"
                                                     ></option>
                                                 </select>
                                             </div>
@@ -136,6 +137,7 @@
                                                     <option th:each="category : ${categories}"
                                                             th:value="${category.name()}"
                                                             th:text="${category}"
+                                                            th:selected="${product.category == category}"
                                                     ></option>
                                                 </select>
                                             </div>

@@ -50,6 +50,10 @@ public class MainController {
     public String showPortfolioItemPage(Product product) {
         return "portfolio-item";
     }
+    @GetMapping("/updateProduct")
+    public String showUpdateProductPage(Product product){
+        return "updateProduct";
+    }
 
     @GetMapping("/forgot-password")
     public String showForgotPasswordPage() {

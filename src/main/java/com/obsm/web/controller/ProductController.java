@@ -96,6 +96,30 @@ public class ProductController {
         productService.deleteById(id);
         return "redirect:/portfolio-overview";
     }
+    @GetMapping("/updateProduct/{id}")
+    public String showUpdateProductPage(@PathVariable("id") int id, Model model) {
+        Product product = productService.findById(id)
+                .orElseThrow();
+
+        List<ProductCategory> categories = Arrays.asList(ProductCategory.values());
+
+        model.addAttribute("product", product);
+        model.addAttribute("categories", categories);
+
+        return "updateProduct";
+    }
+
+    @PostMapping("/updateProduct/{id}")
+    public String updateProduct(@PathVariable("id") int id, @Valid Product product, BindingResult result) {
+        if (result.hasErrors()) {
+            return "updateProduct";
+        }
+
+        product.setId(id);
+        productService.save(product);
+
+        return "redirect:/updateProduct?success";
+    }
 
 
 }
