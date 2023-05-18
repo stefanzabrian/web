@@ -91,5 +91,11 @@ public class ProductController {
         return "portfolio-overview";
     }
 
+    @GetMapping("/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable("id") int id) {
+        productService.deleteById(id);
+        return "redirect:/portfolio-overview";
+    }
+
 
 }

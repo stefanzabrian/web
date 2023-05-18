@@ -11,4 +11,6 @@ public interface ProductService {
     Optional<Product> findById(int id);
 
     List<Product> findAll();
+    void deleteById(int id);
+
 }
