@@ -4,6 +4,8 @@ import com.obsm.web.model.Product;
 import com.obsm.web.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
@@ -15,5 +17,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void save(Product product) {
         productRepository.save(product);
+    }
+
+    @Override
+    public Optional<Product> findById(int id) {
+        return productRepository.findById(id);
     }
 }

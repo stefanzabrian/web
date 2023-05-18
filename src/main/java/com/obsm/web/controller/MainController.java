@@ -1,5 +1,6 @@
 package com.obsm.web.controller;
 
+import com.obsm.web.model.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -43,7 +44,7 @@ public class MainController {
         return "portfolio-overview";
     }
     @GetMapping("/portfolio-item")
-    public String showPortfolioItemPage() {
+    public String showPortfolioItemPage(Product product) {
         return "portfolio-item";
     }
     @GetMapping("/forgot-password")
