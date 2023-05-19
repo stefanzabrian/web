@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
+    // client maps
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";
@@ -54,7 +55,7 @@ public class MainController {
     public String showUpdateProductPage(Product product){
         return "updateProduct";
     }
-
+    // user maps
     @GetMapping("/forgot-password")
     public String showForgotPasswordPage() {
         return "forgot-password";
@@ -69,5 +70,11 @@ public class MainController {
     public String showAdminProfileUpdatePage() {
         return "update-client-profile";
     }
+    // portal maps
+    @GetMapping("/portal")
+    public String showPortalPage(){
+        return "portal";
+    }
+
 
 }
