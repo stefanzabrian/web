@@ -1,11 +1,36 @@
 package com.obsm.web.controller;
 
 import com.obsm.web.model.Product;
+import com.obsm.web.model.User;
+import com.obsm.web.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class MainController {
+    private final UserService userService;
+
+    public MainController(UserService userService) {
+        this.userService = userService;
+    }
+    @ModelAttribute("user")
+    public User user() {
+        return new User();
+    }
+
+    private void getGetCurrentUser(Model model , Principal principal){
+        String email = principal.getName();
+        User user = userService.getByEmail(email);
+
+        List<User> users = userService.findAll();
+        model.addAttribute("users",users);
+        model.addAttribute("user",user);
+    }
     // client maps
     @GetMapping("/login")
     public String showLoginPage() {
@@ -13,37 +38,44 @@ public class MainController {
     }
 
     @GetMapping({"/index", "/", "/home"})
-    public String showIndexPage() {
+    public String showIndexPage(Model model, Principal principal) {
+        getGetCurrentUser(model,principal);
         return "index";
     }
 
     @GetMapping("/about")
-    public String showAboutPage() {
+    public String showAboutPage(Model model ,Principal principal) {
+        getGetCurrentUser(model, principal);
         return "about";
     }
 
     @GetMapping("/contact")
-    public String showContactPage() {
+    public String showContactPage(Model model, Principal principal) {
+        getGetCurrentUser(model, principal);
         return "contact";
     }
 
     @GetMapping("/pricing")
-    public String showPricingPage() {
+    public String showPricingPage(Model model, Principal principal) {
+        getGetCurrentUser(model, principal);
         return "pricing";
     }
 
     @GetMapping("/faq")
-    public String showFaqPage() {
+    public String showFaqPage(Model model, Principal principal) {
+        getGetCurrentUser(model, principal);
         return "faq";
     }
 
     @GetMapping("/blog-home")
-    public String showBlogHomePage() {
+    public String showBlogHomePage(Model model, Principal principal) {
+        getGetCurrentUser(model, principal);
         return "blog-home";
     }
 
     @GetMapping("/blog-post")
-    public String showBlogPostPage() {
+    public String showBlogPostPage(Model model, Principal principal) {
+        getGetCurrentUser(model, principal);
         return "blog-post";
     }
 
@@ -68,7 +100,7 @@ public class MainController {
 
     @GetMapping("/update-admin-profile")
     public String showAdminProfileUpdatePage() {
-        return "update-client-profile";
+        return "update-admin-profile";
     }
     // portal maps
     @GetMapping("/portal")

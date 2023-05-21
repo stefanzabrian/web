@@ -1,4 +1,4 @@
-package com.obsm.web.controller;
+package com.obsm.web.controller.registration;
 
 import com.obsm.web.controller.dto.UserDTO;
 import com.obsm.web.model.User;

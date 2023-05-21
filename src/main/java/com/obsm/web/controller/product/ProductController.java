@@ -1,4 +1,4 @@
-package com.obsm.web.controller;
+package com.obsm.web.controller.product;
 
 import com.obsm.web.model.Product;
 import com.obsm.web.model.constant.ProductCategory;
