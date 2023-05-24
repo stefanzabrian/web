@@ -1,6 +1,8 @@
 package com.obsm.web.service;
 
+import com.obsm.web.model.ClientProfile;
 import com.obsm.web.model.User;
+import com.obsm.web.model.UserProfile;
 import com.obsm.web.model.constant.UserRole;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -17,6 +19,16 @@ public interface UserService extends UserDetailsService {
             String email,
             String password,
             String phoneNumber,
-            UserRole role
+            UserRole role,
+            ClientProfile clientProfile
+    );
+
+    void createAdmin (
+            String email,
+            String password,
+            String phoneNumber,
+            UserRole role,
+            ClientProfile clientProfile,
+            UserProfile userProfile
     );
 }

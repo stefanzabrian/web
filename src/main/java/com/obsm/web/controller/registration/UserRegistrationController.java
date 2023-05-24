@@ -1,8 +1,10 @@
 package com.obsm.web.controller.registration;
 
 import com.obsm.web.controller.dto.UserRegistrationDTO;
+import com.obsm.web.model.ClientProfile;
 import com.obsm.web.model.User;
 import com.obsm.web.model.constant.UserRole;
+import com.obsm.web.service.ClientProfileService;
 import com.obsm.web.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -18,9 +20,11 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/register")
 public class UserRegistrationController {
+    private final ClientProfileService clientProfileService;
     private final UserService userService;
 
-    public UserRegistrationController(UserService userService) {
+    public UserRegistrationController(ClientProfileService clientProfileService, UserService userService) {
+        this.clientProfileService = clientProfileService;
         this.userService = userService;
     }
 
@@ -53,7 +57,9 @@ public class UserRegistrationController {
                 userRegistrationDTO.getEmail(),
                 userRegistrationDTO.getPassword(),
                 userRegistrationDTO.getPhoneNumber(),
-                UserRole.CLIENT
+                UserRole.CLIENT,
+                clientProfileService.save(new ClientProfile())
+
         );
 
         return "redirect:/register?success";

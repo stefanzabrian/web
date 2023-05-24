@@ -1,7 +1,6 @@
 package com.obsm.web.controller.client;
 
 import com.obsm.web.controller.dto.ClientProfileDTO;
-import com.obsm.web.model.ClientProfile;
 import com.obsm.web.model.User;
 import com.obsm.web.service.ClientProfileService;
 import com.obsm.web.service.UserService;
@@ -14,16 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Optional;
 
 @Controller
 public class ClientUpdateController {
     private final UserService userService;
-    private final ClientProfileService clientProfileService;
 
-    public ClientUpdateController(UserService userService, ClientProfileService clientProfileService) {
+    public ClientUpdateController(UserService userService) {
         this.userService = userService;
-        this.clientProfileService = clientProfileService;
     }
 
     @ModelAttribute(name = "user")
@@ -31,13 +27,13 @@ public class ClientUpdateController {
         return new ClientProfileDTO();
     }
 
-    @GetMapping("/update-client-profile/{id}")
-    public String updateClientProfilePage(
-            @PathVariable("id")
-            int id,
+    @GetMapping("/update-client-profile/{email}")
+    public String showUpdateClientProfilePage(
+            @PathVariable("email")
+            String email,
             Model model
     ) {
-        User ifUserIsPresent = userService.findById(id)
+        User ifUserIsPresent = userService.findByEmail(email)
                 .orElseThrow();
         // aici trebuie adaugat profilul clientului
 
@@ -53,42 +49,29 @@ public class ClientUpdateController {
         return "update-client-profile";
     }
 
-    @PostMapping("/update-client-profile/{id}")
+    @PostMapping("/update-client-profile/{email}")
     public String updateClientProfile(
-            @PathVariable("id") int id,
+            @PathVariable("email") String email,
             @Valid
             @ModelAttribute("user")
             ClientProfileDTO clientProfileDTO,
             BindingResult result
     ) {
-        User currentUser = userService.findById(id).orElseThrow();
-        clientProfileDTO.setId(currentUser.getId());
+        User currentUser = userService.findByEmail(email).orElseThrow();
+
 
         if (result.hasErrors()) {
             return "update-client-profile";
         }
 
-        Optional<ClientProfile> clientProfile = clientProfileService.getById(currentUser.getClientProfile().getId());
-        if (clientProfile.isPresent()) {
-            clientProfile.get().setFirstName(clientProfileDTO().getFirstName());
-            clientProfile.get().setLastName(clientProfileDTO.getLastName());
-            clientProfile.get().setAddress(clientProfileDTO.getAddress());
 
-            clientProfileService.save(clientProfile.get());
-        } else {
-            ClientProfile clientProfileNew = clientProfileService.create(
-                    clientProfileDTO.getFirstName(),
-                    clientProfileDTO.getLastName(),
-                    clientProfileDTO.getAddress());
-
-            currentUser.setClientProfile(clientProfileNew);
-        }
-
-
+        currentUser.getClientProfile().setFirstName(clientProfileDTO.getFirstName());
+        currentUser.getClientProfile().setLastName(clientProfileDTO.getLastName());
+        currentUser.getClientProfile().setAddress(clientProfileDTO.getAddress());
         currentUser.setPhoneNumber(clientProfileDTO.getPhoneNumber());
 
         userService.save(currentUser);
 
-        return "redirect:/update-client-profile?success";
+        return "redirect:/update-client-profile/"+ email +"?success";
     }
 }

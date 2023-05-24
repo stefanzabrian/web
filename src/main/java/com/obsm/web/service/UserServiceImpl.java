@@ -1,6 +1,8 @@
 package com.obsm.web.service;
 
+import com.obsm.web.model.ClientProfile;
 import com.obsm.web.model.User;
+import com.obsm.web.model.UserProfile;
 import com.obsm.web.model.constant.UserRole;
 import com.obsm.web.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -27,7 +29,8 @@ public class UserServiceImpl implements UserService{
             String email,
             String password,
             String phoneNumber,
-            UserRole role
+            UserRole role,
+            ClientProfile clientProfile
     ) {
         User user = new User(
                 email,
@@ -36,13 +39,30 @@ public class UserServiceImpl implements UserService{
                 role
 
         );
+        user.setClientProfile(clientProfile);
 
         userRepository.save(user);
+    }
 
-        /*return new User(email,
-                "secret",
+    @Override
+    public void createAdmin(
+            String email,
+            String password,
+            String phoneNumber,
+            UserRole role,
+            ClientProfile clientProfile,
+            UserProfile userProfile
+    ) {
+        User user = new User(
+                email,
+                passwordEncoder.encode(password),
                 phoneNumber,
-                role);*/
+                role
+        );
+        user.setClientProfile(clientProfile);
+        user.setUserProfile(userProfile);
+
+        userRepository.save(user);
     }
 
     @Override
@@ -73,7 +93,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
-                .orElseThrow( () -> new UsernameNotFoundException("Invalid username or password"));
+                .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),

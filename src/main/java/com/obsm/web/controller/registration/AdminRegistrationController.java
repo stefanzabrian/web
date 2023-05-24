@@ -1,9 +1,13 @@
 package com.obsm.web.controller.registration;
 
 import com.obsm.web.controller.dto.UserDTO;
+import com.obsm.web.model.ClientProfile;
 import com.obsm.web.model.User;
+import com.obsm.web.model.UserProfile;
 import com.obsm.web.model.constant.ProductCategory;
 import com.obsm.web.model.constant.UserRole;
+import com.obsm.web.service.ClientProfileService;
+import com.obsm.web.service.UserProfileService;
 import com.obsm.web.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -18,9 +22,13 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/register-admin")
 public class AdminRegistrationController {
+    private final UserProfileService userProfileService;
+    private final ClientProfileService clientProfileService;
     private final UserService userService;
 
-    public AdminRegistrationController(UserService userService) {
+    public AdminRegistrationController(UserProfileService userProfileService, ClientProfileService clientProfileService, UserService userService) {
+        this.userProfileService = userProfileService;
+        this.clientProfileService = clientProfileService;
         this.userService = userService;
     }
 
@@ -59,11 +67,15 @@ public class AdminRegistrationController {
             return "register-admin";
         }
 
-        userService.create(
+        ClientProfile clientProfile = new ClientProfile();
+        UserProfile userProfile = new UserProfile();
+        userService.createAdmin(
                 userDTO.getEmail(),
                 userDTO.getPassword(),
                 userDTO.getPhoneNumber(),
-                userDTO.getRole()
+                userDTO.getRole(),
+                clientProfileService.save(clientProfile),
+                userProfileService.save(userProfile)
         );
 
         return "redirect:/register-admin?success";

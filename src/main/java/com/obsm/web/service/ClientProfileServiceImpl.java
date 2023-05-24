@@ -20,8 +20,8 @@ public class ClientProfileServiceImpl implements ClientProfileService {
     }
 
     @Override
-    public void save(ClientProfile clientProfile) {
-        clientProfileRepository.save(clientProfile);
+    public ClientProfile save(ClientProfile clientProfile) {
+       return clientProfileRepository.save(clientProfile);
     }
 
     @Override

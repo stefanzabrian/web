@@ -29,7 +29,7 @@ public class ProductController {
         return "addProduct";
     }
 
-    @GetMapping("product")
+    @ModelAttribute("product")
     public Product product() {
         return new Product();
     }

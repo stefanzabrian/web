@@ -38,15 +38,12 @@ public class Project {
     @Column(name = "priority")
     private ProjectPriority priority;
     @NotNull(message = "* Complete the field")
-    @NotBlank(message = "* Complete the field")
     @Column(name = "price")
     private Double price;
     @NotNull(message = "* Complete the field")
-    @NotBlank(message = "* Complete the field")
     @Column(name = "start_date")
     private Date startDate;
     @NotNull(message = "* Complete the field")
-    @NotBlank(message = "* Complete the field")
     @Column(name = "end_date")
     private Date endDate;
 

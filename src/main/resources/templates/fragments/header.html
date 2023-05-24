@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:fragment="header-css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Online shop & Business Operations</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" th:href="@{assets/favicon.ico}" />
+
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+    <link th:href="@{/css/sb-admin-2.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+
+</head>
+<body class="d-flex flex-column h-100">
+
+
+<main th:fragment="header" class="flex-shrink-0">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-5">
+            <a class="navbar-brand" th:href="@{/index}">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN','MODERATOR')">
+                        <a class="nav-link" th:href="@{/portal}">Portal</a></li>
+                    <!--<li class="nav-item" sec:authorize="hasAuthority('CLIENT')">
+                        <a class="nav-link" th:href="@{/portal}">My Orders</a></li>-->
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/index}">Home</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/about}">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/contact}">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/pricing}">Pricing</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/faq}">FAQ</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                            <li><a class="dropdown-item" th:href="@{/blog-home}">Blog Home</a></li>
+                            <li><a class="dropdown-item" th:href="@{/blog-post}">Blog Post</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li>
+                                <a class="dropdown-item" th:href="@{/portfolio-overview}">Portfolio Overview</a></li>
+                            <li>
+                                <a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/addProduct}">Add item</a></li>
+                        </ul>
+                    </li>
+
+                   <!-- <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                           th:text="${#authentication.principal.username}">
+                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                            </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" href="#">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Edit Profile</a></li>
+                            <li><a class="dropdown-item" th:href="@{/index}">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Change Password</a></li>
+                            <li sec:authorize="isAuthenticated()"><a class="dropdown-item" th:href="@{/logout}">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Log out</a></li>
+                        </ul>
+                    </li>-->
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Login</a></li>
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/register}">Register</a></li>
+
+
+                    <!-- Navbar-->
+                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4" sec:authorize="isAuthenticated()">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                               th:text="${#authentication.principal.username}">
+                                <i class="fas fa-table"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item">
+                                    Information</a></li>
+                                <li><a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2"></i>
+                                    View account</a></li>
+                                <li><a class="dropdown-item" th:href="@{/update-client-profile/{email}(email=${#authentication.principal.username})}">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2"></i>
+                                    Edit account</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item">
+                                    Cart</a></li>
+                                <li><a class="dropdown-item" href="#">
+                                    <i class="fas fa-chart-area me-1"></i>
+                                    View cart items</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item">
+                                    Orders</a></li>
+                                <li><a class="dropdown-item" href="#">
+                                    <i class="fas fa-chart-bar me-1"></i>
+                                    View all orders</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" th:href="@{/logout}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                                    Log out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</main>
+
+
+</body>
+</html>

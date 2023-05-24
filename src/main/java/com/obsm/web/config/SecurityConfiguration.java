@@ -20,9 +20,13 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
                 // restricted access
-                .requestMatchers("/addProduct").hasAuthority("ADMIN")
                 .requestMatchers("/register-admin").hasAuthority("ADMIN")
-                .requestMatchers("/update-admin-profile").hasAnyAuthority("ADMIN", "MODERATOR")
+                .requestMatchers("/update-admin-profile").hasAnyAuthority("ADMIN","MODERATOR")
+                .requestMatchers("/updateProduct/**").hasAuthority("ADMIN")
+                .requestMatchers("/addProduct").hasAuthority("ADMIN")
+                .requestMatchers("/deleteProduct/**").hasAuthority("ADMIN")
+                .requestMatchers("/portal").hasAnyAuthority("ADMIN","MODERATOR")
+                .requestMatchers("/addProject").hasAuthority("ADMIN")
                 // public access
                 .requestMatchers(
                         "/javax/**",
@@ -32,7 +36,18 @@ public class SecurityConfiguration {
                         "/vendor/**",
                         "/webjars/**",
                         "/forgot-password",
-                        "/register"
+                        "/register",
+                        "/about",
+                        "/blog-home",
+                        "/blog-post",
+                        "/contact",
+                        "/faq",
+                        "/index",
+                        "/",
+                        "/home",
+                        "/portfolio-item",
+                        "/portfolio-overview",
+                        "/pricing"
                 ).permitAll()
                 .anyRequest()
                 .authenticated()

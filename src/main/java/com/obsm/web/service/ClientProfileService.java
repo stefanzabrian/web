@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ClientProfileService {
     Optional<ClientProfile> getById(int id);
-    void save(ClientProfile clientProfile);
+    ClientProfile save(ClientProfile clientProfile);
     ClientProfile create(
             String firstName,
             String lastName,

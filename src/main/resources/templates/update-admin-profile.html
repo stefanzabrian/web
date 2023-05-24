@@ -1,10 +1,237 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments/header :: header-css}"></head>
+
 <body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+
+
+<!-- Page content-->
+<section class="py-5">
+    <div class="container px-5">
+        <!-- Contact form-->
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-people"></i></div>
+                <h1 th:if="${param.success}" class="fw-bolder">You just edited your profile information!</h1>
+                <h1 th:if="!${param.success}" class="fw-bolder">Edit profile information</h1>
+                <h1 th:if="${param.error}" class="fw-bolder">Oops...</h1>
+
+                <p class="lead fw-normal text-muted mb-0">Edit details below then hit Save button :)</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+
+
+                    <!--NEW FORM-->
+
+                    <form th:action="@{/update-admin-profile/{email}(email=${#authentication.principal.username})}" th:object="${user}" method="post"  class="user">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="firstName">First Name</label>
+                                <input type="text" th:field="*{firstName}" id="firstName" name="firstName" class="form-control form-control-user"
+                                       placeholder="First Name">
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" th:field="*{lastName}" id="lastName" name="lastName" class="form-control form-control-user"
+                                       placeholder="Last Name">
+                                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" th:field="*{address}" id="address" name="address" class="form-control form-control-user"
+                                   placeholder="Address">
+                            <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" th:field="*{phoneNumber}" id="phoneNumber" name="phoneNumber" class="form-control form-control-user"
+                                   placeholder="Phone Number">
+                            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></span>
+                        </div>
+
+                        <div sec:authorize="hasAuthority('ADMIN')" class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="position">Position</label>
+                                <div class="dropdown">
+                                    <select class="form-control" id="position" name="position">
+                                        <option>--Select a Position--</option>
+                                        <option th:each="position : ${positions}"
+                                                th:value="${position.name()}"
+                                                th:text="${position}"
+                                                th:selected="${user.position == position}"
+                                        ></option>
+                                    </select>
+                                </div>
+                                <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"
+                                      class="text-danger">* Chose a Position</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="role">Role</label>
+                                <div class="dropdown">
+                                    <select class="form-control" id="role" name="role">
+                                        <option>--Select a Role--</option>
+                                        <option th:each="role : ${roles}"
+                                                th:value="${role.name()}"
+                                                th:text="${role}"
+                                                th:selected="${user.role == role}"
+                                        ></option>
+                                    </select>
+                                </div>
+                                <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
+                                      class="text-danger">* Chose a Role</span>
+                            </div>
+                        </div>
+
+                        <div sec:authorize="hasAuthority('ADMIN')" class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="email">Email</label>
+                                <input type="text" th:field="*{email}" id="email" name="email" class="form-control form-control-user"
+                                       placeholder="Email">
+                                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="salary">Salary</label>
+                                <input type="text" th:field="*{salary}" id="salary" name="salary" class="form-control form-control-user"
+                                       placeholder="Salary">
+                                <span th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="password" class="form-control form-control-user"
+                                       id="exampleInputPassword" placeholder="Password">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control form-control-user"
+                                       id="exampleRepeatPassword" placeholder="Repeat Password">
+                            </div>
+                        </div>-->
+
+                        <input type="submit" class="btn btn-primary btn-user btn-block">
+                        <hr>
+                        <!--<a href="index.html" class="btn btn-google btn-user btn-block">
+                          <i class="fab fa-google fa-fw"></i> Register with Google
+                        </a>-->
+                        <a th:href="@{/index}" class="btn btn-facebook btn-user btn-block">
+                            <i class="fab fa-facebook-f fa-fw"></i> Home Page
+                        </a>
+                    </form>
+
+                    <!--NEW FORM-->
+
+                    <!--OLD FORM-->
+                    <!--<form th:action="@{/addProduct}" th:object="${product}" method="post" class="user">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="name">Name</label>
+                                <input type="text" th:field="*{name}" id="name" name="name" class="form-control form-control-user"
+                                       placeholder="Name of product">
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="price">Price</label>
+                                <input type="text" th:field="*{price}" id="price" name="price" class="form-control form-control-user"
+                                       placeholder="Price of product"></input>
+                                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" th:field="*{description}" id="description" name="description" class="form-control form-control-user"
+                                   placeholder="Description">
+                            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="model">Model</label>
+                                <div class="dropdown">
+                                    <select class="form-control" id="model" name="model">
+                                        <option>&#45;&#45;Select a model&#45;&#45;</option>
+                                        <option th:each="model : ${models}"
+                                                th:value="${model.name()}"
+                                                th:text="${model}"
+                                        ></option>
+                                    </select>
+                                </div>
+                                <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="category">Category</label>
+                                <div class="dropdown">
+                                    <select class="form-control" id="category" name="category">
+                                        <option>&#45;&#45;Select a category&#45;&#45;</option>
+                                        <option th:each="category : ${categories}"
+                                                th:value="${category.name()}"
+                                                th:text="${category}"
+                                        ></option>
+                                    </select>
+                                </div>
+                                <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <input type="submit" value="Save product" class="btn btn-primary btn-user btn-block">
+                        <hr>
+                        &lt;!&ndash;<a href="index.html" class="btn btn-google btn-user btn-block">
+                          <i class="fab fa-google fa-fw"></i> Register with Google
+                        </a>&ndash;&gt;
+                        <a th:href="@{/portfolio-overview}" class="btn btn-facebook btn-user btn-block">
+                            <i class="fab fa-facebook-f fa-fw"></i> Portfolio Overview
+                        </a>
+                    </form>-->
+                    <!--OLD FORM-->
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Contact cards-->
+        <div class="row gx-5 row-cols-2 row-cols-lg-4 py-5">
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-chat-dots"></i></div>
+                <div class="h5 mb-2">Chat with us</div>
+                <p class="text-muted mb-0">Chat live with one of our support specialists.</p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-people"></i></div>
+                <div class="h5">Ask the community</div>
+                <p class="text-muted mb-0">Explore our community forums and communicate with other users.</p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-question-circle"></i></div>
+                <div class="h5">Support center</div>
+                <p class="text-muted mb-0">Browse FAQ's and support articles to find solutions.</p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-telephone"></i></div>
+                <div class="h5">Call us</div>
+                <p class="text-muted mb-0">Call us during normal business hours at (555) 892-9403.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 </body>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
 </html>
