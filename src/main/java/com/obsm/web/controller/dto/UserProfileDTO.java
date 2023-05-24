@@ -7,24 +7,17 @@ import jakarta.validation.constraints.NotNull;
 
 public class UserProfileDTO {
     private Integer id;
-    @NotNull(message = "* Complete the field")
-    @NotBlank(message = "* Complete the field")
     private String email;
     @NotNull(message = "* Complete the field")
     private String firstName;
     @NotNull(message = "* Complete the field")
     private String lastName;
-    @NotNull(message = "* Complete the field")
     private UserProfilePosition position;
-    @NotNull(message = "* Complete the field")
     private Double salary;
-    @NotNull(message = "* Complete the field")
     private String address;
-
     @NotNull(message = "* Complete the field")
     @NotBlank(message = "* Complete the field")
     private String phoneNumber;
-    @NotNull(message = "* Complete the field")
     private UserRole role;
 
     public UserProfileDTO() {
