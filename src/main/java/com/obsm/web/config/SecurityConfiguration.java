@@ -27,12 +27,14 @@ public class SecurityConfiguration {
                 .requestMatchers("/deleteProduct/**").hasAuthority("ADMIN")
                 .requestMatchers("/portal").hasAnyAuthority("ADMIN","MODERATOR")
                 .requestMatchers("/addProject").hasAuthority("ADMIN")
+                .requestMatchers("/addTask").hasAuthority("ADMIN")
                 // public access
                 .requestMatchers(
                         "/javax/**",
                         "/css/**",
                         "/img/**",
                         "/js/**",
+                        "*/js/**",
                         "/vendor/**",
                         "/webjars/**",
                         "/forgot-password",
@@ -45,7 +47,7 @@ public class SecurityConfiguration {
                         "/index",
                         "/",
                         "/home",
-                        "/portfolio-item",
+                        "/portfolio-item/**",
                         "/portfolio-overview",
                         "/pricing"
                 ).permitAll()

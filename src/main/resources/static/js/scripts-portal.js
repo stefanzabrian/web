@@ -1,12 +1,4 @@
 /*!
-* Start Bootstrap - Modern Business v5.0.7 (https://startbootstrap.com/template-overviews/modern-business)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-modern-business/blob/master/LICENSE)
-*/
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
-
-/*!
     * Start Bootstrap - SB Admin v7.0.7 (https://startbootstrap.com/template/sb-admin)
     * Copyright 2013-2023 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
@@ -31,14 +23,4 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     }
 
-});
-
-$(document).ready(function() {
-    var sidebarToggle = $("#sidebarToggle");
-    var layoutSidenav = $("#layoutSidenav");
-
-    sidebarToggle.on("click", function(e) {
-        e.preventDefault();
-        layoutSidenav.toggleClass("sb-sidenav-toggled");
-    });
 });

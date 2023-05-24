@@ -16,12 +16,10 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @NotNull(message="* Complete the field")
-    @NotBlank(message="* Complete the field")
+    @NotNull(message = "* Complete the field")
     @Column(name = "number")
     private Integer number;
-    @NotNull(message="* Complete the field")
-    @NotBlank(message="* Complete the field")
+    @NotNull(message = "* Complete the field")
     @Column(name = "name")
     private String name;
     @Enumerated(EnumType.STRING)

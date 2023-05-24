@@ -20,8 +20,11 @@ public class MainController {
     public MainController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping("/template")
-    public String showTemplatePage(){ return "template";}
+    public String showTemplatePage() {
+        return "template";
+    }
 
     @ModelAttribute("user")
     public User user() {
@@ -60,25 +63,21 @@ public class MainController {
 
     @GetMapping("/pricing")
     public String showPricingPage() {
-
         return "pricing";
     }
 
     @GetMapping("/faq")
     public String showFaqPage() {
-
         return "faq";
     }
 
     @GetMapping("/blog-home")
     public String showBlogHomePage() {
-
         return "blog-home";
     }
 
     @GetMapping("/blog-post")
     public String showBlogPostPage() {
-
         return "blog-post";
     }
 
@@ -117,11 +116,6 @@ public class MainController {
     @GetMapping("/viewProjectById")
     public String showViewProjectById(Project project) {
         return "viewProjectById";
-    }
-
-    @GetMapping("/addTask")
-    public String showAddTaskPage(Task task) {
-        return "addTask";
     }
 
 

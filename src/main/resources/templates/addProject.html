@@ -1,153 +1,329 @@
-<!doctype HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
-<head>
+<head th:replace="~{fragments/portal-fragments/header-portal :: header-css}">
+
+
 </head>
 
-
 <body>
+<div th:replace="~{fragments/portal-fragments/header-portal :: header}"></div>
 
-<div th:fragment="addProject">
-    <div class="container-fluid px-4">
-        <h1 th:if="${param.success}" class="mt-4">You just added a new Product!</h1>
-        <h1 th:if="!${param.success}" class="mt-4">Add a new Project</h1>
-        <h1 th:if="${param.error}" class="mt-4">Oops...</h1>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Core</div>
 
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-            <!-- Page Heading -->
-            <ol class="breadcrumb mb-4">
-                <li th:if="!${param.success}" class="breadcrumb-item active">Build your project from scratch :)</li>
-            </ol>
-            <div>
-                <form th:action="@{/addProject}" th:object="${project}" method="post" class="user">
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="name">Name</label>
-                            <input type="text" th:field="*{name}" id="name" name="name"
-                                   class="form-control form-control-user" placeholder="Name of project">
-                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-                                  class="text-danger"></span>
+                    <!--Start-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStart"
+                       aria-expanded="false" aria-controls="collapseStart">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-chart-pie me-1"></i>
                         </div>
-                        <div class="col-sm-6">
-                            <label for="price">Price</label>
-                            <input type="text" th:field="*{price}" id="price" name="price"
-                                   class="form-control form-control-user" placeholder="Price of project"></input>
-                            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
-                                  class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" th:field="*{description}" id="description" name="description"
-                               class="form-control form-control-user" placeholder="Description">
-                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
-                              class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="type">Type</label>
-                            <div class="dropdown">
-                                <select class="form-control" id="type" name="type">
-                                    <option>--Select a Type--</option>
-                                    <option th:each="type : ${types}" th:value="${type.name()}"
-                                            th:text="${type}"></option>
-                                </select>
-                            </div>
-                            <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"
-                                  class="text-danger"></span>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <label for="category">Category</label>
-                            <div class="dropdown">
-                                <select class="form-control" id="category" name="category">
-                                    <option>--Select a Category--</option>
-                                    <option th:each="category : ${categories}" th:value="${category.name()}"
-                                            th:text="${category}"></option>
-                                </select>
-                            </div>
-                            <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"
-                                  class="text-danger"></span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group row">
-
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="status">Status</label>
-                            <div class="dropdown">
-                                <select class="form-control" id="status" name="status">
-                                    <option>--Select a Status--</option>
-                                    <option th:each="status : ${statuses}" th:value="${status.name()}"
-                                            th:text="${status}"></option>
-                                </select>
-                            </div>
-                            <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}"
-                                  class="text-danger"></span>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <label for="priority">Priority</label>
-                            <div class="dropdown">
-                                <select class="form-control" id="priority" name="priority">
-                                    <option>--Select a Priority--</option>
-                                    <option th:each="priority : ${priorities}" th:value="${priority.name()}"
-                                            th:text="${priority}"></option>
-                                </select>
-                            </div>
-                            <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"
-                                  class="text-danger"></span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="startDate">Start Date</label>
-                            <input type="text" th:field="*{startDate}" id="startDate" name="startDate"
-                                   class="form-control form-control-user" placeholder="Start date of the project">
-                            <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"
-                                  class="text-danger"></span>
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="endDate">End Date</label>
-                            <input type="text" th:field="*{endDate}" id="endDate" name="endDate"
-                                   class="form-control form-control-user"
-                                   placeholder="End date of the project"></input>
-                            <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"
-                                  class="text-danger"></span>
-                        </div>
-                    </div>
-
-
-                    <input type="submit" value="Save Project" class="btn btn-primary btn-user btn-block">
-                    <hr>
-                    <!--<a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Register with Google
-                    </a>-->
-                    <a th:href="@{/portal}" class="btn btn-facebook btn-user btn-block">
-                        </i> Home Page
+                        Start
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                </form>
+                    <div class="collapse" id="collapseStart" aria-labelledby="headingTwo"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionStart">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#StartCollapseProjects" aria-expanded="false"
+                               aria-controls="StartCollapseProjects">
+                                Projects
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseProjects" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View All</a>
+                                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addProject}">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#StartCollapseTasks" aria-expanded="false"
+                               aria-controls="StartCollapseTasks">
+                                Tasks
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseTasks" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addTask}">Add new</a>
+                                </nav>
+                            </div>
+                            <a sec:authorize="hasAuthority('ADMIN')" class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#StartCollapseEmployees" aria-expanded="false"
+                               aria-controls="StartCollapseEmployees">
+                                Employees
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseEmployees" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <!--Users-->
+                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
+                       aria-expanded="false" aria-controls="collapseUsers">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-user fa-fw"></i>
+                        </div>
+                        Users
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseUsers" aria-labelledby="headingTwo"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionUsers">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#UsersCollapseModerators" aria-expanded="false"
+                               aria-controls="UsersCollapseModerators">
+                                Moderators
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseModerators" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View All</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#UsersCollapseAdmins" aria-expanded="false"
+                               aria-controls="StartCollapseAdmins">
+                                Admins
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseAdmins" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#UsersCollapseClients" aria-expanded="false"
+                               aria-controls="StartCollapseClients">
+                                Clients
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseClients" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                        </nav>
+                    </div>
+
+
+                    <!--Interface-->
+                    <div class="sb-sidenav-menu-heading">Interface</div>
+
+                    <!--Others-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOthers" aria-expanded="false" aria-controls="collapseOthers">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Others
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseOthers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="#">View all</a>
+                            <a class="nav-link" href="#">Add new</a>
+                        </nav>
+                    </div>
+
+
+
+                    <!--Addons-->
+                    <div class="sb-sidenav-menu-heading">Addons</div>
+                    <a class="nav-link" href="#">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Charts
+                    </a>
+                    <a class="nav-link" href="#">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Tables
+                    </a>
+                </div>
             </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                <div class="sb-sidenav-footer" th:text="${#authentication.principal.username}">
+                </div>
+            </div>
+        </nav>
+    </div>
 
-        </div>
-        <!-- /.container-fluid -->
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 th:if="${param.success}" class="mt-4">You just added a new Product!</h1>
+                <h1 th:if="!${param.success}" class="mt-4">Add a new Project</h1>
+                <h1 th:if="${param.error}" class="mt-4">Oops...</h1>
 
 
+
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <ol class="breadcrumb mb-4">
+                        <li th:if="!${param.success}" class="breadcrumb-item active">Build your project from scratch :)</li>
+                    </ol>
+                    <div>
+                        <form th:action="@{/addProject}" th:object="${project}" method="post" class="user">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="name">Name</label>
+                                    <input type="text" th:field="*{name}" id="name" name="name"
+                                           class="form-control form-control-user" placeholder="Name of project">
+                                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="price">Price</label>
+                                    <input type="text" th:field="*{price}" id="price" name="price"
+                                           class="form-control form-control-user" placeholder="Price of project"></input>
+                                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+                                          class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea type="text" th:field="*{description}" id="description" name="description"
+                                          class="form-control form-control-user" placeholder="Description"></textarea>
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                      class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="type">Type</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="type" name="type">
+                                            <option>--Select a Type--</option>
+                                            <option th:each="type : ${types}" th:value="${type.name()}"
+                                                    th:text="${type}"></option>
+                                        </select>
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="category">Category</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="category" name="category">
+                                            <option>--Select a Category--</option>
+                                            <option th:each="category : ${categories}" th:value="${category.name()}"
+                                                    th:text="${category}"></option>
+                                        </select>
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"
+                                          class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="status">Status</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="status" name="status">
+                                            <option>--Select a Status--</option>
+                                            <option th:each="status : ${statuses}" th:value="${status.name()}"
+                                                    th:text="${status}"></option>
+                                        </select>
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="priority">Priority</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="priority" name="priority">
+                                            <option>--Select a Priority--</option>
+                                            <option th:each="priority : ${priorities}" th:value="${priority.name()}"
+                                                    th:text="${priority}"></option>
+                                        </select>
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"
+                                          class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="startDate">Start Date</label>
+                                    <input type="text" th:field="*{startDate}" id="startDate" name="startDate"
+                                           class="form-control form-control-user" placeholder="Start date of the project">
+                                    <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="endDate">End Date</label>
+                                    <input type="text" th:field="*{endDate}" id="endDate" name="endDate"
+                                           class="form-control form-control-user"
+                                           placeholder="End date of the project"></input>
+                                    <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"
+                                          class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <hr>
+                            <input type="submit" value="Save Project" class="btn btn-primary btn-user btn-block">
+                            <hr>
+                            <!--<a href="index.html" class="btn btn-google btn-user btn-block">
+                              <i class="fab fa-google fa-fw"></i> Register with Google
+                            </a>-->
+                            <a th:href="@{/portal}" class="btn btn-facebook btn-user btn-block">
+                                </i> Home Page
+                            </a>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+
+
+
+
+            </div>
+        </main>
     </div>
 </div>
 
+
+
+
+
+
+
 </body>
+<div th:replace="~{fragments/portal-fragments/footer-portal :: footer}"></div>
 
-
-</html>tml>
+</html>

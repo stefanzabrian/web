@@ -1,6 +1,5 @@
 package com.obsm.web.controller.project;
 
-import com.obsm.web.model.Product;
 import com.obsm.web.model.Project;
 import com.obsm.web.model.constant.ProjectCategory;
 import com.obsm.web.model.constant.ProjectPriority;
