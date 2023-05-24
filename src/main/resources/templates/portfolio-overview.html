@@ -15,6 +15,11 @@
             <h1 class="fw-bolder">Our Work</h1>
             <p class="lead fw-normal text-muted mb-0">Company portfolio</p>
         </div>
+        <div th:if="${param.productAddedToCart}">
+            <div class="alert alert-info">
+                Product added to cart!
+            </div>
+        </div>
 
         <div class="row gx-5">
 
@@ -34,6 +39,15 @@
                            th:text="${product.name}"></a>
                     </div>
                 </div>
+                <p></p>
+
+                <a th:href="${'/shopping-cart-add-overview/'+product.getId()}" class="btn btn-primary btn-lg px-4 me-sm-3">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                    <span class="text" th:text="${product.price} +' Add to cart'"></span>
+                </a>
+
                 <p></p>
 
                 <div sec:authorize="hasAuthority('ADMIN')">

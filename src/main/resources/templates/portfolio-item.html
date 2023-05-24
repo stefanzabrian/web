@@ -13,7 +13,13 @@
     <div class="container px-5 my-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
+
                 <div class="text-center mb-5">
+                    <div th:if="${param.productAddedToCart}">
+                        <div class="alert alert-info">
+                            Product added to cart!
+                        </div>
+                    </div>
 
 
                     <h1 class="fw-bolder" th:text="${product.name}"></h1>
@@ -36,11 +42,11 @@
                     <p class="fs-4 mb-4 fst-italic" th:text="${product.description}"></p>
 
                     <!-- Item cu buton de buy edit si delete si view on click -->
-                    <a th:href="@{/index}" class="btn btn-primary btn-lg px-4 me-sm-3">
+                    <a th:href="${'/shopping-cart-add-item/'+product.getId()}" class="btn btn-primary btn-lg px-4 me-sm-3">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-check"></i>
                                 </span>
-                        <span class="text" th:text="${product.price}"> Buy</span>
+                        <span class="text" th:text="${product.price} +' Add to cart'"></span>
                     </a>
 
                     <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/updateProduct/{id}(id=${product.id})}" class="btn btn-light btn-icon-split btn-sm">

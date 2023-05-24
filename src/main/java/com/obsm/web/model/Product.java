@@ -4,6 +4,8 @@ import com.obsm.web.model.constant.ProductCategory;
 import com.obsm.web.model.constant.ProductModel;
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "product")
 public class Product {
@@ -22,12 +24,12 @@ public class Product {
     @Column(name = "description")
     private String description;
     @Column(name = "price")
-    private String price;
+    private Double price;
 
     public Product() {
     }
 
-    public Product(String name, ProductModel model, ProductCategory category, String description, String price) {
+    public Product(String name, ProductModel model, ProductCategory category, String description, Double price) {
         this.name = name;
         this.model = model;
         this.category = category;
@@ -75,11 +77,24 @@ public class Product {
         this.description = description;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
