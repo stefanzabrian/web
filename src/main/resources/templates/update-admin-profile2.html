@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments/portal-fragments/header-portal :: header-css}">
+
+
+</head>
+
+<body>
+<div th:replace="~{fragments/portal-fragments/header-portal :: header}"></div>
+
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Core</div>
+
+                    <!--Start-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStart" aria-expanded="false" aria-controls="collapseStart">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-chart-pie me-1"></i>
+                        </div>
+                        Start
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseStart" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionStart">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#StartCollapseProjects" aria-expanded="false" aria-controls="StartCollapseProjects">
+                                Projects
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseProjects" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View All</a>
+                                    <a class="nav-link" th:href="@{/addProject}">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#StartCollapseTasks" aria-expanded="false" aria-controls="StartCollapseTasks">
+                                Tasks
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseTasks" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" th:href="@{/addTask}">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#StartCollapseEmployees" aria-expanded="false" aria-controls="StartCollapseEmployees">
+                                Employees
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseEmployees" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <!--Users-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-user fa-fw"></i>
+                        </div>
+                        Users
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseUsers" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionUsers">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#UsersCollapseModerators" aria-expanded="false" aria-controls="UsersCollapseModerators">
+                                Moderators
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseModerators" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View All</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#UsersCollapseAdmins" aria-expanded="false" aria-controls="StartCollapseAdmins">
+                                Admins
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseAdmins" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#UsersCollapseClients" aria-expanded="false" aria-controls="StartCollapseClients">
+                                Clients
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseClients" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                        </nav>
+                    </div>
+
+
+                    <!--Interface-->
+                    <div class="sb-sidenav-menu-heading">Interface</div>
+
+                    <!--Others-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOthers" aria-expanded="false" aria-controls="collapseOthers">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Others
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseOthers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="#">View all</a>
+                            <a class="nav-link" href="#">Add new</a>
+                        </nav>
+                    </div>
+
+
+
+                    <!--Addons-->
+                    <div class="sb-sidenav-menu-heading">Addons</div>
+                    <a class="nav-link" href="#">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Charts
+                    </a>
+                    <a class="nav-link" href="#">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Tables
+                    </a>
+                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                #UserRole from DB
+            </div>
+        </nav>
+    </div>
+
+
+<!--Page Content-->
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <!-- Page Content -->
+                <h1>Admin Portal</h1>
+
+
+
+
+            </div>
+
+        </main>
+    </div>
+</div>
+
+
+
+
+
+
+
+</body>
+<div th:replace="~{fragments/portal-fragments/footer-portal :: footer}"></div>
+
+</html>
