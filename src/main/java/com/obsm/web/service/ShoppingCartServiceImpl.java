@@ -51,12 +51,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void checkOut() {
+    public void checkOut(String userEmail) {
+        //System.out.println(userEmail);
+        //TODO: find user by email
+        // get user profile
+        // create new order and save it
+        // create new product order objects and asign order to the user profile, and save them in DB
+        // send email to user
         cart.clear();
+
     }
 
     @Override
     public Map<Product, Integer> getAllProducts() {
         return Collections.unmodifiableMap(cart);
     }
+
+
 }

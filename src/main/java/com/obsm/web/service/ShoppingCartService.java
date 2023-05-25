@@ -13,7 +13,7 @@ public interface ShoppingCartService {
 
     double totalPrice();
 
-    void checkOut();
+    void checkOut(String userEmail);
 
     Map<Product, Integer> getAllProducts();
 }

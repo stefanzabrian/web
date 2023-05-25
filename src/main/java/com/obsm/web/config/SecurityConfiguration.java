@@ -30,6 +30,8 @@ public class SecurityConfiguration {
                 .requestMatchers("/addTask").hasAuthority("ADMIN")
                 // public access
                 .requestMatchers(
+                        "/shopping-cart-add/**",
+                        "/shopping-cart-remove/**",
                         "/shopping-cart/**",
                         "/shopping-cart-add-item/**",
                         "/shopping-cart-add-overview/**",
