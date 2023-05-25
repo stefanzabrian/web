@@ -39,7 +39,8 @@
                                  data-bs-parent="#sidenavAccordionStart">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" th:href="@{/viewAllProjects}">View All</a>
-                                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addProject}">Add new</a>
+                                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addProject}">Add
+                                        new</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -52,10 +53,12 @@
                                  data-bs-parent="#sidenavAccordionStart">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" th:href="@{/viewAllTasks}">View all</a>
-                                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addTask}">Add new</a>
+                                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addTask}">Add
+                                        new</a>
                                 </nav>
                             </div>
-                            <a sec:authorize="hasAuthority('ADMIN')" class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            <a sec:authorize="hasAuthority('ADMIN')" class="nav-link collapsed" href="#"
+                               data-bs-toggle="collapse"
                                data-bs-target="#StartCollapseEmployees" aria-expanded="false"
                                aria-controls="StartCollapseEmployees">
                                 Employees
@@ -72,7 +75,8 @@
                     </div>
 
                     <!--Users-->
-                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
+                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link collapsed" href="#"
+                       data-bs-toggle="collapse" data-bs-target="#collapseUsers"
                        aria-expanded="false" aria-controls="collapseUsers">
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-user fa-fw"></i>
@@ -130,18 +134,19 @@
                     <div class="sb-sidenav-menu-heading">Interface</div>
 
                     <!--Others-->
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOthers" aria-expanded="false" aria-controls="collapseOthers">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOthers"
+                       aria-expanded="false" aria-controls="collapseOthers">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Others
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
-                    <div class="collapse" id="collapseOthers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <div class="collapse" id="collapseOthers" aria-labelledby="headingOne"
+                         data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
                             <a class="nav-link" href="#">View all</a>
                             <a class="nav-link" href="#">Add new</a>
                         </nav>
                     </div>
-
 
 
                     <!--Addons-->
@@ -165,132 +170,52 @@
     </div>
 
 
+    <!--Page Content-->
     <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <h1 th:if="${param.success}" class="mt-4">You just added a new Task!</h1>
-                <h1 th:if="!${param.success}" class="mt-4">Add a new Task</h1>
-                <h1 th:if="${param.error}" class="mt-4">Oops...</h1>
+        <!--Page Content-->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                DataTable Example
+            </div>
+            <div class="card-body">
 
 
-
-
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Build your task...</li>
-                    </ol>
-                    <div>
-                        <form th:action="@{/addTask}" th:object="${task}" method="post" class="user">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="number">Number</label>
-                                    <input type="text" th:field="*{number}" id="number" name="number" class="form-control form-control-user"
-                                           placeholder="Number of task">
-                                    <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="text-danger"></span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="name">Name</label>
-                                    <input type="text" th:field="*{name}" id="name" name="name" class="form-control form-control-user"
-                                           placeholder="Name of task">
-                                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="structure">Structure</label>
-                                    <div class="dropdown">
-                                        <select class="form-control" id="structure" name="structure">
-                                            <option>--Select a Structure--</option>
-                                            <option th:each="structure : ${structures}"
-                                                    th:value="${structure.name()}"
-                                                    th:text="${structure}"
-                                            ></option>
-                                        </select>
-                                    </div>
-                                    <span th:if="${#fields.hasErrors('structure')}" th:errors="*{structure}" class="text-danger"></span>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="category">Category</label>
-                                    <div class="dropdown">
-                                        <select class="form-control" id="category" name="category">
-                                            <option>--Select a Category--</option>
-                                            <option th:each="category : ${categories}"
-                                                    th:value="${category.name()}"
-                                                    th:text="${category}"
-                                            ></option>
-                                        </select>
-                                    </div>
-                                    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></span>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group row">
-
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="status">Status</label>
-                                    <div class="dropdown">
-                                        <select class="form-control" id="status" name="status">
-                                            <option>--Select a Status--</option>
-                                            <option th:each="status : ${statuses}"
-                                                    th:value="${status.name()}"
-                                                    th:text="${status}"
-                                            ></option>
-                                        </select>
-                                    </div>
-                                    <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="text-danger"></span>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <label for="completionDate">Completion Date</label>
-                                    <input type="text" th:field="*{completionDate}" id="completionDate" name="completionDate" class="form-control form-control-user"
-                                           placeholder="End date of the project"></input>
-                                    <span th:if="${#fields.hasErrors('completionDate')}" th:errors="*{completionDate}" class="text-danger"></span>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="comments">Comments</label>
-                                <textarea type="text" th:field="*{comments}" id="comments" name="comments" class="form-control form-control-user"
-                                          placeholder="Leave comments..."></textarea>
-                                <span th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}" class="text-danger"></span>
-                            </div>
-
-                            <input type="submit" value="Save Task" class="btn btn-primary btn-user btn-block">
-                            <hr>
-                            <!--<a href="index.html" class="btn btn-google btn-user btn-block">
-                              <i class="fab fa-google fa-fw"></i> Register with Google
-                            </a>-->
-                            <a th:href="@{/portal}" class="btn btn-facebook btn-user btn-block">
-                                <i class="fab fa-facebook-f fa-fw"></i> Home Page
-                            </a>
-                        </form>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-
-
-
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="project : ${projects}">
+                        <td th:text="${project.name}"></td>
+                        <td th:text="${project.type}"></td>
+                        <td th:text="${project.category}"></td>
+                        <td th:text="${project.status}"></td>
+                        <td th:text="${project.priority}"></td>
+                        <td th:text="${project.price}"></td>
+                        <td th:text="${project.startDate}"></td>
+                        <td th:text="${project.endDate}"></td>
+                        <td th:text="${project.description}"></td>
+                    </tr>
+                    </tbody>
+                </table>
 
             </div>
-        </main>
+        </div>
+
+
     </div>
 </div>
-
-
-
-
-
 
 
 </body>

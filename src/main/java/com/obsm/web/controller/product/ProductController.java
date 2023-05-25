@@ -52,7 +52,7 @@ public class ProductController {
             BindingResult result
     ) {
         if (result.hasErrors()) {
-            return "/addProduct";
+            return "addProduct";
 
         }
 

@@ -18,7 +18,6 @@ public class UserProfileDTO {
     @NotNull(message = "* Complete the field")
     @NotBlank(message = "* Complete the field")
     private String phoneNumber;
-    private UserRole role;
 
     public UserProfileDTO() {
     }
@@ -30,8 +29,8 @@ public class UserProfileDTO {
                           UserProfilePosition position,
                           Double salary,
                           String address,
-                          String phoneNumber,
-                          UserRole role) {
+                          String phoneNumber
+    ) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
@@ -40,7 +39,6 @@ public class UserProfileDTO {
         this.salary = salary;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.role = role;
     }
 
     public Integer getId() {
@@ -107,11 +105,4 @@ public class UserProfileDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
-        this.role = role;
-    }
 }

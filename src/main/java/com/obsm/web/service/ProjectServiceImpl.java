@@ -4,6 +4,8 @@ import com.obsm.web.model.Project;
 import com.obsm.web.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
@@ -15,5 +17,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void create(Project project) {
         projectRepository.save(project);
+    }
+
+    @Override
+    public List<Project> findAll() {
+        return projectRepository.findAll();
     }
 }

@@ -31,4 +31,5 @@ public interface UserService extends UserDetailsService {
             ClientProfile clientProfile,
             UserProfile userProfile
     );
+    List<User> findAllByUserRole(UserRole role);
 }

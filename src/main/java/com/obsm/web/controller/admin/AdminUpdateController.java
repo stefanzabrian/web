@@ -52,8 +52,8 @@ public class AdminUpdateController {
                 ifUserIsPresent.getUserProfile().getPosition(),
                 ifUserIsPresent.getUserProfile().getSalary(),
                 ifUserIsPresent.getUserProfile().getAddress(),
-                ifUserIsPresent.getPhoneNumber(),
-                ifUserIsPresent.getRole()
+                ifUserIsPresent.getPhoneNumber()
+                //ifUserIsPresent.getRole()
         );
 
         model.addAttribute("user", userProfileDTO);
@@ -82,7 +82,7 @@ public class AdminUpdateController {
 
         currentUser.setEmail(userProfileDTO.getEmail());
         currentUser.setPhoneNumber(userProfileDTO.getPhoneNumber());
-        currentUser.setRole(userProfileDTO.getRole());
+        //currentUser.setRole(userProfileDTO.getRole());
 
         userService.save(currentUser);
 

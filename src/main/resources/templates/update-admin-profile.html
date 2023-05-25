@@ -38,7 +38,7 @@
                             <div class="collapse" id="StartCollapseProjects" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionStart">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">View All</a>
+                                    <a class="nav-link" th:href="@{/viewAllProjects}">View All</a>
                                     <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addProject}">Add new</a>
                                 </nav>
                             </div>
@@ -51,7 +51,7 @@
                             <div class="collapse" id="StartCollapseTasks" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionStart">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" th:href="@{/viewAllTasks}">View all</a>
                                     <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addTask}">Add new</a>
                                 </nav>
                             </div>
@@ -64,7 +64,7 @@
                             <div class="collapse" id="StartCollapseEmployees" aria-labelledby="headingOne"
                                  data-bs-parent="#sidenavAccordionStart">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" th:href="@{/viewAllEmployees}">View all</a>
                                     <a class="nav-link" href="#">Add new</a>
                                 </nav>
                             </div>
@@ -231,38 +231,6 @@
                                       class="text-danger"></span>
                             </div>
 
-                            <div sec:authorize="hasAuthority('ADMIN')" class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="position">Position</label>
-                                    <div class="dropdown">
-                                        <select class="form-control" id="position" name="position">
-                                            <option>--Select a Position--</option>
-                                            <option th:each="position : ${positions}"
-                                                    th:value="${position.name()}"
-                                                    th:text="${position}"
-                                                    th:selected="${user.position == position}"
-                                            ></option>
-                                        </select>
-                                    </div>
-                                    <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"
-                                          class="text-danger">* Chose a Position</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <label for="role">Role</label>
-                                    <div class="dropdown">
-                                        <select class="form-control" id="role" name="role">
-                                            <option>--Select a Role--</option>
-                                            <option th:each="role : ${roles}"
-                                                    th:value="${role.name()}"
-                                                    th:text="${role}"
-                                                    th:selected="${user.role == role}"
-                                            ></option>
-                                        </select>
-                                    </div>
-                                    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
-                                          class="text-danger">* Chose a Role</span>
-                                </div>
-                            </div>
 
                             <div sec:authorize="hasAuthority('ADMIN')" class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -280,6 +248,24 @@
                                            placeholder="Salary">
                                     <span th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"
                                           class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div sec:authorize="hasAuthority('ADMIN')" class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="position">Position</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="position" name="position">
+                                            <option>--Select a Position--</option>
+                                            <option th:each="position : ${positions}"
+                                                    th:value="${position.name()}"
+                                                    th:text="${position}"
+                                                    th:selected="${user.position == position}"
+                                            ></option>
+                                        </select>
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"
+                                          class="text-danger">* Chose a Position</span>
                                 </div>
                             </div>
 

@@ -8,10 +8,13 @@ import com.obsm.web.model.constant.TaskStructure;
 import com.obsm.web.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class TaskController {
@@ -30,14 +33,17 @@ public class TaskController {
     public Task getTask() {
         return new Task();
     }
+
     @ModelAttribute("categories")
     public TaskCategory[] getTaskCategories() {
         return TaskCategory.values();
     }
+
     @ModelAttribute("statuses")
     public TaskStatus[] getTaskStatuses() {
         return TaskStatus.values();
     }
+
     @ModelAttribute("structures")
     public TaskStructure[] getTaskStructures() {
         return TaskStructure.values();
@@ -58,6 +64,15 @@ public class TaskController {
         taskService.create(task);
 
         return "redirect:/addTask?success";
+    }
+
+    @GetMapping("/viewAllTasks")
+    public String showViewAllProjectsPage(Model model) {
+        List<Task> tasks = taskService.findAll();
+
+        model.addAttribute("tasks", tasks);
+
+        return "viewAllTasks";
     }
 
 }

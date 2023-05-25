@@ -1,36 +1,36 @@
-OSBM-1 Create database design
-OSBM-2 Create system architecture design
+done - OSBM-1 Create database design
+done - OSBM-2 Create system architecture design
 
-OBSM-3 Create a spring boot template project with all dependencies
-OBSM-4 Configure database connection and database schema
-OBSM-5 Create Hibernate model
-OBSM-6 Create dummy index page (thymeleaf config)
-OBSM-7 Configure Spring Security
-OBSM-8 Add login page
-OBSM-9 Add Client register page (public user creation)
-OBSM-10 Add Admin Creation page (private only for admin role)
-OBSM-11 Add Client & Admin Profiles update page (client & user profiles) -- nice to have --
+done - OBSM-3 Create a spring boot template project with all dependencies
+done - OBSM-4 Configure database connection and database schema
+done - OBSM-5 Create Hibernate model
+done - OBSM-6 Create dummy index page (thymeleaf config)
+done - OBSM-7 Configure Spring Security
+done - OBSM-8 Add login page
+done - OBSM-9 Add Client register page (public user creation)
+done - OBSM-10 Add Admin Creation page (private only for admin role)
+done - OBSM-11 Add Client & Admin Profiles update page (client & user profiles) -- nice to have --
 OBSM-12 Add forgot password page -- nice to have --
 //// MVP STAGE 1 COMPLETED
 
-OBSM-13 Implement Add Product (Admin)
-OBSM-14 Implement View all Products (Client & Admin)
-OBSM-15 Implement Update Product (Admin)
-OBSM-16 Implement Delete Product (Admin)
-OBSM-17 Implement View Product By ID (Client & Admin)
-OBSM-18 Implement Add to Cart (Client)
+done - OBSM-13 Implement Add Product (Admin)
+done - OBSM-14 Implement View all Products (Client & Admin)
+done - OBSM-15 Implement Update Product (Admin)
+done - OBSM-16 Implement Delete Product (Admin)
+done - OBSM-17 Implement View Product By ID (Client & Admin)
+done - OBSM-18 Implement Add to Cart (Client)
 OBSM-19 Implement View Cart (Client)
 OBSM-20 Implement Send Order (Client) (email nice to have)
 ////MVP STAGE 2 COMPLETED
 
 OBSM-21 Implement Edit Cart Content (Client)
-OBSM-22 Implement Add Project (Admin)
-OBSM-23 Implement View all Projects (Admin & Moderator)
+done - OBSM-22 Implement Add Project (Admin)
+done - OBSM-23 Implement View all Projects (Admin & Moderator)
 OBSM-24 Implement Update Project (Admin & Moderator)
 OBSM-25 Implement Delete Project (Admin)
 OBSM-26 Implement View Project By ID (Admin & Moderator)
-OBSM-27 Implement Add Task (Admin)
-OBSM-28 Implement View all Tasks (Admin & Moderator)
+done - OBSM-27 Implement Add Task (Admin)
+done - OBSM-28 Implement View all Tasks (Admin & Moderator)
 OBSM-29 Implement Update Task (Admin & Moderator)
 OBSM-30 Implement Delete Task (Admin)
 OBSM-31 Implement View Task by ID (Admin & Moderator)
