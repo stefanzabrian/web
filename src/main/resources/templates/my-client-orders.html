@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments/header :: header-css}"></head>
+
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<section class="h-100 gradient-custom">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center my-4">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        My Orders
+                    </div>
+                    <div class="card-body">
+
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Order Number</th>
+                                <th scope="col">Date of Order</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Total Amount</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="order : ${orders}">
+                                <th th:text="${order.orderNumber}"></th>
+                                <td th:text="${order.dateOfOrder}"></td>
+                                <td th:text="${order.status}"></td>
+                                <td th:text="${order.totalAmount}"></td>
+                                <td>
+                                    <div sec:authorize="hasAuthority('CLIENT')">
+                                        <a th:href="'/client-view-order/' + ${order.getId()}">View</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div sec:authorize="hasAuthority('ADMIN')">
+                                        <a th:href="'/admin-view-order/' + ${order.getId()}">View</a>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</html>

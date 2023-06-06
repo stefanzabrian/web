@@ -1,11 +1,8 @@
 package com.obsm.web.controller.task;
 
-import com.obsm.web.model.Project;
-import com.obsm.web.model.Task;
-import com.obsm.web.model.constant.TaskCategory;
-import com.obsm.web.model.constant.TaskStatus;
-import com.obsm.web.model.constant.TaskStructure;
-import com.obsm.web.service.TaskService;
+import com.obsm.web.model.*;
+import com.obsm.web.model.constant.*;
+import com.obsm.web.service.*;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,20 +16,28 @@ import java.util.List;
 @Controller
 public class TaskController {
     private final TaskService taskService;
+    private final ProjectService projectService;
+    private final ProjectTaskUserService projectTaskUserService;
+    private final UserService userService;
+    private Project projectFound = new Project();
 
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskService taskService,
+                          ProjectService projectService,
+                          ProjectTaskUserService projectTaskUserService,
+                          UserService userService) {
         this.taskService = taskService;
+        this.projectService = projectService;
+        this.projectTaskUserService = projectTaskUserService;
+        this.userService = userService;
     }
+
+    // Task Related Controllers
 
     @GetMapping("/addTask")
     public String showAddTaskPage(Task task) {
         return "addTask";
     }
 
-    @ModelAttribute("task")
-    public Task getTask() {
-        return new Task();
-    }
 
     @ModelAttribute("categories")
     public TaskCategory[] getTaskCategories() {
@@ -61,13 +66,13 @@ public class TaskController {
 
         }
 
-        taskService.create(task);
+        taskService.save(task);
 
         return "redirect:/addTask?success";
     }
 
     @GetMapping("/viewAllTasks")
-    public String showViewAllProjectsPage(Model model) {
+    public String showViewAllTasksPage(Model model) {
         List<Task> tasks = taskService.findAll();
 
         model.addAttribute("tasks", tasks);

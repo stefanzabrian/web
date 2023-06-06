@@ -1,6 +1,7 @@
 package com.obsm.web.repository;
 
 import com.obsm.web.model.User;
+import com.obsm.web.model.UserProfile;
 import com.obsm.web.model.constant.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,4 +13,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findUserByEmail(String email);
     Optional<User> findById(int id);
     List<User> findAllByRole(UserRole role);
+    Optional<User> findByUserProfile(UserProfile userProfile);
 }

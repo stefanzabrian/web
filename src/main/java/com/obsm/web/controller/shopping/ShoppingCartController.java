@@ -1,8 +1,7 @@
-package com.obsm.web.controller.cart;
+package com.obsm.web.controller.shopping;
 
 import com.obsm.web.model.Product;
 import com.obsm.web.service.ProductService;
-import com.obsm.web.service.ProjectService;
 import com.obsm.web.service.ShoppingCartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

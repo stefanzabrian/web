@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments/portal-fragments/header-portal :: header-css}">
+
+
+</head>
+
+<body>
+<div th:replace="~{fragments/portal-fragments/header-portal :: header}"></div>
+
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Core</div>
+
+                    <!--Start-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStart"
+                       aria-expanded="false" aria-controls="collapseStart">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-chart-pie me-1"></i>
+                        </div>
+                        Start
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseStart" aria-labelledby="headingTwo"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionStart">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#StartCollapseProjects" aria-expanded="false"
+                               aria-controls="StartCollapseProjects">
+                                Projects
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseProjects" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" th:href="@{/viewAllProjects}">View All</a>
+                                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addProject}">Add
+                                        new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#StartCollapseTasks" aria-expanded="false"
+                               aria-controls="StartCollapseTasks">
+                                Tasks
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseTasks" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" th:href="@{/viewAllTasks}">View all</a>
+                                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/addTask}">Add
+                                        new</a>
+                                </nav>
+                            </div>
+                            <a sec:authorize="hasAuthority('ADMIN')" class="nav-link collapsed" href="#"
+                               data-bs-toggle="collapse"
+                               data-bs-target="#StartCollapseEmployees" aria-expanded="false"
+                               aria-controls="StartCollapseEmployees">
+                                Employees
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="StartCollapseEmployees" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionStart">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" th:href="@{/viewAllEmployees}">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <!--Users-->
+                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link collapsed" href="#"
+                       data-bs-toggle="collapse" data-bs-target="#collapseUsers"
+                       aria-expanded="false" aria-controls="collapseUsers">
+                        <div class="sb-nav-link-icon">
+                            <i class="fas fa-user fa-fw"></i>
+                        </div>
+                        Users
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseUsers" aria-labelledby="headingTwo"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionUsers">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#UsersCollapseModerators" aria-expanded="false"
+                               aria-controls="UsersCollapseModerators">
+                                Moderators
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseModerators" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View All</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#UsersCollapseAdmins" aria-expanded="false"
+                               aria-controls="StartCollapseAdmins">
+                                Admins
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseAdmins" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                               data-bs-target="#UsersCollapseClients" aria-expanded="false"
+                               aria-controls="StartCollapseClients">
+                                Clients
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="UsersCollapseClients" aria-labelledby="headingOne"
+                                 data-bs-parent="#sidenavAccordionUsers">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View all</a>
+                                    <a class="nav-link" href="#">Add new</a>
+                                </nav>
+                            </div>
+                        </nav>
+                    </div>
+
+
+                    <!--Interface-->
+                    <div class="sb-sidenav-menu-heading">Interface</div>
+
+                    <!--Others-->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOthers"
+                       aria-expanded="false" aria-controls="collapseOthers">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Others
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseOthers" aria-labelledby="headingOne"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="#">View all</a>
+                            <a class="nav-link" href="#">Add new</a>
+                        </nav>
+                    </div>
+
+
+                    <!--Addons-->
+                    <div class="sb-sidenav-menu-heading">Addons</div>
+                    <a class="nav-link" href="#">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Charts
+                    </a>
+                    <a class="nav-link" href="#">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Tables
+                    </a>
+                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                <div class="sb-sidenav-footer" th:text="${#authentication.principal.username}">
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <!--Page Content-->
+    <div id="layoutSidenav_content">
+        <!--Page Content-->
+        <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+            <nav class="navbar navbar-expand navbar-dark bg-dark">
+                <div class="text-bg-dark p-3">Project Information</div>
+                <a th:href="@{/addProject}" type="button" class="btn btn-dark">Add New</a>
+            </nav>
+
+            <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+
+                <div class="card mb-4">
+                    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                        <p class="lead fw-normal text-bg-dark mb-0" th:text="'&#160;&#160;' + ${project.name}"></p>
+                    </nav>
+                    <div class="card-body">
+                        <div class="card" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                            <div class="card-body">
+                                <h5 class="card-title">Description</h5>
+                                <p class="card-text" th:text="${project.description}"></p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" th:text="'Type: ' + ${project.type}"></li>
+                                <li class="list-group-item" th:text="'Priority: ' + ${project.priority}">Priority</li>
+                                <li class="list-group-item" th:text="'Status: ' + ${project.status}">Status</li>
+                                <li class="list-group-item" th:text="'Category: ' + ${project.category}">Category</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="card-link">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="card mb-4">
+                    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                        <div class="text-bg-dark p-3">Task Name:</div>
+                        <hr>
+                        <a type="button" class="btn btn-dark" th:href="'/addProjectTaskUser/' +${project.getId()}">Add New</a>
+                    </nav>
+                    <div class="card-body">
+
+                        <div class="card" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                            <div class="card-body">
+                                <h5 class="card-title">Number</h5>
+                                <p class="card-text"> Description: Some quick example text to build on the card title
+                                    and make up the
+                                    bulk of
+                                    the card's content.</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Structure</li>
+                                <li class="list-group-item">Asignee</li>
+                                <li class="list-group-item">Status</li>
+                            </ul>
+                            <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                <a href="#" class="card-link">Edit</a>
+                                <a href="#" class="card-link">View</a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                    </div>
+
+                </div>-->
+
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card mb-4">
+                                <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                                    <div class="text-bg-dark p-3">Task Name:</div>
+                                    <hr>
+                                    <a type="button" class="btn btn-dark" th:href="'/addProjectTaskUser/' +${project.getId()}">Add New</a>
+                                </nav>
+                                <div class="card-body">
+
+                                    <div class="card" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Number</h5>
+                                            <p class="card-text"> Description: Some quick example text to build on the card title
+                                                and make up the
+                                                bulk of
+                                                the card's content.</p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Structure</li>
+                                            <li class="list-group-item">Asignee</li>
+                                            <li class="list-group-item">Status</li>
+                                        </ul>
+                                        <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                            <a href="#" class="card-link">Edit</a>
+                                            <a href="#" class="card-link">View</a>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <a type="button" data-bs-target="#carouselExample" data-bs-slide="next" class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a type="button" data-bs-target="#carouselExample" data-bs-slide="prev" class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card mb-4">
+                                <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                                    <div class="text-bg-dark p-3">Task Name:</div>
+                                    <hr>
+                                    <a type="button" class="btn btn-dark" th:href="'/addProjectTaskUser/' +${project.getId()}">Add New</a>
+                                </nav>
+                                <div class="card-body">
+
+                                    <div class="card" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Number</h5>
+                                            <p class="card-text"> Description: Some quick example text to build on the card title
+                                                and make up the
+                                                bulk of
+                                                the card's content.</p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Structure</li>
+                                            <li class="list-group-item">Asignee</li>
+                                            <li class="list-group-item">Status</li>
+                                        </ul>
+                                        <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                            <a href="#" class="card-link">Edit</a>
+                                            <a href="#" class="card-link">View</a>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <a type="button" data-bs-target="#carouselExample" data-bs-slide="next" class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a type="button" data-bs-target="#carouselExample" data-bs-slide="prev" class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card mb-4">
+                                <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                                    <div class="text-bg-dark p-3">Task Name:</div>
+                                    <hr>
+                                    <a type="button" class="btn btn-dark" th:href="'/addProjectTaskUser/' +${project.getId()}">Add New</a>
+                                </nav>
+                                <div class="card-body">
+
+                                    <div class="card" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Number</h5>
+                                            <p class="card-text"> Description: Some quick example text to build on the card title
+                                                and make up the
+                                                bulk of
+                                                the card's content.</p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Structure</li>
+                                            <li class="list-group-item">Asignee</li>
+                                            <li class="list-group-item">Status</li>
+                                        </ul>
+                                        <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                            <a href="#" class="card-link">Edit</a>
+                                            <a href="#" class="card-link">View</a>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <a type="button" data-bs-target="#carouselExample" data-bs-slide="next" class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a type="button" data-bs-target="#carouselExample" data-bs-slide="prev" class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="card mb-4">
+            <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                <div class="text-bg-dark p-3">Overview</div>
+            </nav>
+            <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                <div class="card mb-4">
+                    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                        <div class="text-bg-dark p-3">Tasks</div>
+                    </nav>
+                    <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Nr</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Structure</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Asignee</th>
+                                <th scope="col">Comments</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="task : ${taskMap.entrySet()}">
+                                <td th:text="${task.key.number}"></td>
+                                <td th:text="${task.key.name}"></td>
+                                <td th:text="${task.key.structure}"></td>
+                                <td th:text="${task.key.status}"></td>
+                                <td th:if="${task.value.fistName != null && task.value.lastName != null}"
+                                    th:text="${task.value.fistName} + ' ' + ${task.value.lastName}"></td>
+                                <td th:text="${task.key.comments}"></td>
+                                <td>
+                                    <div class="btn-group navbar-dark bg-dark" role="group" aria-label="Basic example">
+                                        <a th:href="'/viewTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">View</a>
+                                        <a th:href="'/updateTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">Update</a>
+                                        <button type="button" class="btn btn-primary text-bg-dark p">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                        <div class="text-bg-dark p-3">All Employees</div>
+                    </nav>
+                    <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Phone Number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="employee : ${employees}">
+                                <td th:text="${employee.userProfile.fistName} + ' ' + ${employee.userProfile.lastName}"></td>
+                                <td th:text="${employee.phoneNumber}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
+
+
+</body>
+<div th:replace="~{fragments/portal-fragments/footer-portal :: footer}"></div>
+
+</html>

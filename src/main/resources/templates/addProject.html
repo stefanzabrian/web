@@ -168,7 +168,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 th:if="${param.success}" class="mt-4">You just added a new Product!</h1>
+                <h1 th:if="${param.success}" class="mt-4">You just added a new Project!</h1>
                 <h1 th:if="!${param.success}" class="mt-4">Add a new Project</h1>
                 <h1 th:if="${param.error}" class="mt-4">Oops...</h1>
 
@@ -278,7 +278,7 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label for="startDate">Start Date</label>
                                     <input type="text" th:field="*{startDate}" id="startDate" name="startDate"
-                                           class="form-control form-control-user" placeholder="Start date of the project">
+                                           class="form-control form-control-user" placeholder="Example: 5/25/2029">
                                     <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"
                                           class="text-danger"></span>
                                 </div>
@@ -286,7 +286,7 @@
                                     <label for="endDate">End Date</label>
                                     <input type="text" th:field="*{endDate}" id="endDate" name="endDate"
                                            class="form-control form-control-user"
-                                           placeholder="End date of the project"></input>
+                                           placeholder="Example: 5/25/2031"></input>
                                     <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"
                                           class="text-danger"></span>
                                 </div>

@@ -4,6 +4,8 @@ import com.obsm.web.model.constant.OrderStatus;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "client_order")
 public class Order {
@@ -19,19 +21,29 @@ public class Order {
     @Column(name = "order_status")
     private OrderStatus status;
     @Column(name = "total_amount")
-    private Integer totalAmount;
+    private Double totalAmount;
     @ManyToOne
     @JoinColumn(name = "client_profile_id")
     private ClientProfile clientProfile;
 
+    @OneToMany(mappedBy = "order")
+    private List<ProductOrder> productOrders;
     public Order() {
     }
 
-    public Order(String orderNumber, Date dateOfOrder, OrderStatus status, Integer totalAmount) {
+    public Order(String orderNumber, Date dateOfOrder, OrderStatus status, Double totalAmount) {
         this.orderNumber = orderNumber;
         this.dateOfOrder = dateOfOrder;
         this.status = status;
         this.totalAmount = totalAmount;
+    }
+
+    public List<ProductOrder> getProductOrders() {
+        return productOrders;
+    }
+
+    public void setProductOrders(List<ProductOrder> productOrders) {
+        this.productOrders = productOrders;
     }
 
     public Integer getId() {
@@ -66,11 +78,11 @@ public class Order {
         this.status = status;
     }
 
-    public Integer getTotalAmount() {
+    public Double getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Integer totalAmount) {
+    public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
 

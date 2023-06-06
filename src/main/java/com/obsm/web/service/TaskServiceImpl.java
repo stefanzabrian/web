@@ -5,6 +5,7 @@ import com.obsm.web.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -15,12 +16,17 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void create(Task task) {
-        taskRepository.save(task);
+    public Task save(Task task) {
+        return taskRepository.save(task);
     }
 
     @Override
     public List<Task> findAll() {
         return taskRepository.findAll();
+    }
+
+    @Override
+    public Optional<Task> findById(int id) {
+        return taskRepository.findById(id);
     }
 }

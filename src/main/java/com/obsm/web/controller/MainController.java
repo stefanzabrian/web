@@ -61,26 +61,6 @@ public class MainController {
         return "contact";
     }
 
-    @GetMapping("/pricing")
-    public String showPricingPage() {
-        return "pricing";
-    }
-
-    @GetMapping("/faq")
-    public String showFaqPage() {
-        return "faq";
-    }
-
-    @GetMapping("/blog-home")
-    public String showBlogHomePage() {
-        return "blog-home";
-    }
-
-    @GetMapping("/blog-post")
-    public String showBlogPostPage() {
-        return "blog-post";
-    }
-
     @GetMapping("/portfolio-item")
     public String showPortfolioItemPage(Product product) {
         return "portfolio-item";

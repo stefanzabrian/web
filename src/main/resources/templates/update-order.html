@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header-css}"></head>
+
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- Page content-->
+<section class="py-5">
+    <div class="container px-5">
+        <!-- Contact form-->
+        <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i>
+                </div>
+                <h1 th:if="${param.success}" class="fw-bolder">You just updated the Order!</h1>
+                <h1 th:if="!${param.success}" class="fw-bolder">Update Order</h1>
+                <h1 th:if="${param.error}" class="fw-bolder">Oops...</h1>
+
+                <p class="lead fw-normal text-muted mb-0">Enter details below then hit Save button :)</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+                    <form th:action="'/update-order/' + ${order.id}" th:object="${order}" method="post" class="user">
+                        <div class="form-group row">
+                            <div class="col-sm-6" th:classappend="${#fields.hasErrors('status')} ? 'has-error' : ''">
+                                <label for="status">Status</label>
+                                <div class="dropdown">
+                                    <select th:field="*{status}" class="form-control" id="status" name="status">
+                                        <option value="">--Select a category--</option>
+                                        <option th:each="status : ${statuses}"
+                                                th:value="${status.name()}"
+                                                th:text="${status}"
+                                                th:selected="${order.status == status}"
+                                        ></option>
+                                    </select>
+                                </div>
+                                <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}"
+                                      class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <input type="submit" value="Save product" class="btn btn-primary btn-user btn-block">
+                        <hr>
+                        <!--<a href="index.html" class="btn btn-google btn-user btn-block">
+                          <i class="fab fa-google fa-fw"></i> Register with Google
+                        </a>-->
+                        <a th:href="@{/portfolio-overview}" class="btn btn-facebook btn-user btn-block">
+                            <i class="fab fa-facebook-f fa-fw"></i> Portfolio Overview
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Contact cards-->
+        <div class="row gx-5 row-cols-2 row-cols-lg-4 py-5">
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-chat-dots"></i>
+                </div>
+                <div class="h5 mb-2">Chat with us</div>
+                <p class="text-muted mb-0">Chat live with one of our support specialists.</p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-people"></i></div>
+                <div class="h5">Ask the community</div>
+                <p class="text-muted mb-0">Explore our community forums and communicate with other users.</p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i
+                        class="bi bi-question-circle"></i></div>
+                <div class="h5">Support center</div>
+                <p class="text-muted mb-0">Browse FAQ's and support articles to find solutions.</p>
+            </div>
+            <div class="col">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-telephone"></i>
+                </div>
+                <div class="h5">Call us</div>
+                <p class="text-muted mb-0">Call us during normal business hours at (555) 892-9403.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</html>

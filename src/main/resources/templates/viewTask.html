@@ -172,56 +172,44 @@
 
     <!--Page Content-->
     <div id="layoutSidenav_content">
-        <!--Page Content-->
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                DataTable Example
-            </div>
-            <div class="card-body">
+        <main>
+            <div class="container-fluid px-4">
+                <!-- Page Content -->
+                <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                    <nav class="navbar navbar-expand navbar-dark bg-dark">
+                        <div class="text-bg-dark p-3">Task Information</div>
+                    </nav>
 
-
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Priority</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr th:each="project : ${projects}">
-                        <td>
-                            <div class="btn-group navbar-dark bg-dark" role="group" aria-label="Basic example">
-                                <a th:href="'/viewProject/' +${project.id}" type="button" class="btn btn-primary text-bg-dark p">View</a>
-                                <button type="button" class="btn btn-primary text-bg-dark p">Delete</button>
+                    <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                        <div class="card mb-4">
+                            <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                                <p class="lead fw-normal text-bg-dark mb-0" th:text="'&#160;&#160; Task Number: ' + ${task.number}"></p>
+                            </nav>
+                            <div class="card-body">
+                                <div class="card" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Comments</h5>
+                                        <p class="card-text" th:text="${task.comments}"></p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" th:text="'Structure: ' + ${task.structure}"></li>
+                                        <li class="list-group-item" th:text="'Name: ' + ${task.name}">Priority</li>
+                                        <li class="list-group-item" th:text="'Status: ' + ${task.status}">Status</li>
+                                        <li class="list-group-item" th:text="'Category: ' + ${task.category}">Category</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="#" class="card-link">Edit</a>
+                                    </div>
+                                </div>
                             </div>
-                        </td>
-                        <td th:text="${project.name}"></td>
-                        <td th:text="${project.type}"></td>
-                        <td th:text="${project.category}"></td>
-                        <td th:text="${project.status}"></td>
-                        <td th:text="${project.priority}"></td>
-                        <td th:text="${project.price}"></td>
-                        <td th:text="${project.startDate}"></td>
-                        <td th:text="${project.endDate}"></td>
-                        <td th:text="${project.description}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                        </div>
 
+
+                    </div>
+                </div>
             </div>
-        </div>
 
-
+        </main>
     </div>
 </div>
 
