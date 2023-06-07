@@ -84,7 +84,9 @@ public class ProjectTaskUserController {
         ProjectTaskUser projectTaskUser = new ProjectTaskUser();
         projectTaskUser.setProject(projectFound);
         projectTaskUser.setTask(task);
+        projectTaskUser.setUserProfile(userService.findById(2).get().getUserProfile());
         projectTUService.save(projectTaskUser);
+
 
 
         return "redirect:/viewProject/" + projectFound.getId();
