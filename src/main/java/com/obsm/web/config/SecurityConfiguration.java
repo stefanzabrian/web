@@ -67,8 +67,6 @@ public class SecurityConfiguration {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic()
-                .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()

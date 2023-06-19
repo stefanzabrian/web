@@ -21,6 +21,11 @@ public class MainController {
         this.userService = userService;
     }
 
+    @GetMapping("/error")
+    public String errorToMainPage(){
+        return "index";
+    }
+
     @GetMapping("/template")
     public String showTemplatePage() {
         return "template";

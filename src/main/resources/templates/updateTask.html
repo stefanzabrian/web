@@ -181,11 +181,12 @@
 
                     <!-- Page Heading -->
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Build your task...</li>
+                        <li sec:authorize="hasAuthority('MODERATOR')" th:text="'Number: ' + ${ptuDto.taskNumber} + ' , ' + 'Name: ' + ${ptuDto.taskName} + ' , ' + 'Structure: ' + ${ptuDto.taskStructure} + ' , ' + 'Category: ' + ${ptuDto.taskCategory} " class="breadcrumb-item active"></li>
+                        <li sec:authorize="hasAuthority('ADMIN')" th:text="'Number: ' + ${ptuDto.taskNumber} + ' , ' + 'Name: ' + ${ptuDto.taskName}" class="breadcrumb-item active"></li>
                     </ol>
                     <div>
                         <form th:action="@{/updateTask/{id}(id=${ptuDto.id})}" th:object="${ptuDto}" method="post" class="user">
-                            <div class="form-group row">
+                            <div sec:authorize="hasAuthority('ADMIN')" class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label for="number">Number</label>
                                     <input type="text" th:field="*{taskNumber}" id="number" name="number" class="form-control form-control-user"
@@ -200,7 +201,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div sec:authorize="hasAuthority('ADMIN')" class="form-group row">
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label for="structure">Structure</label>

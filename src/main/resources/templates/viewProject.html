@@ -176,13 +176,12 @@
         <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
             <nav class="navbar navbar-expand navbar-dark bg-dark">
                 <div class="text-bg-dark p-3">Project Information</div>
-                <a th:href="@{/addProject}" type="button" class="btn btn-dark">Add New</a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/addProject}" type="button" class="btn btn-dark">Add New</a>
             </nav>
 
             <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-
-                <div class="card mb-4">
-                    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                    <nav class="navbar navbar-expand navbar-dark bg-dark">
                         <p class="lead fw-normal text-bg-dark mb-0" th:text="'&#160;&#160;' + ${project.name}"></p>
                     </nav>
                     <div class="card-body">
@@ -211,16 +210,16 @@
 
         </div>
 
-        <div class="card mb-4">
-            <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">>
+          <nav class="navbar navbar-expand navbar-dark bg-dark">
                 <div class="text-bg-dark p-3">Overview</div>
             </nav>
             <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-                <div class="card mb-4">
-                    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-                        <div class="text-bg-dark p-3">Task Name:</div>
+                <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                    <nav class="navbar navbar-expand navbar-dark bg-dark">
+                        <div class="text-bg-dark p-3">Tasks</div>
                         <hr>
-                        <a type="button" class="btn btn-dark" th:href="'/addProjectTaskUser/' +${project.getId()}">Add New</a>
+                        <a sec:authorize="hasAuthority('ADMIN')" type="button" class="btn btn-dark" th:href="'/addProjectTaskUser/' +${project.getId()}">Add New</a>
                     </nav>
                     <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
 
@@ -249,7 +248,7 @@
                                     <div class="btn-group navbar-dark bg-dark" role="group" aria-label="Basic example">
                                         <a th:href="'/viewTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">View</a>
                                         <a th:href="'/updateTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">Update</a>
-                                        <a th:href="'/deleteTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">Delete</a>
+                                        <a sec:authorize="hasAuthority('ADMIN')" th:href="'/deleteTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">Delete</a>
                                     </div>
                                 </td>
                             </tr>
@@ -257,8 +256,8 @@
                         </table>
                     </div>
                 </div>
-                <div class="card mb-4">
-                    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                    <nav class="navbar navbar-expand navbar-dark bg-dark">
                         <div class="text-bg-dark p-3">All Employees</div>
                     </nav>
                     <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">

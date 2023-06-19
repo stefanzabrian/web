@@ -150,10 +150,23 @@ public class ProjectTaskUserController {
             return "/updateTask";
         }
 
-        projectTU.getTask().setNumber(ptuDto.getTaskNumber());
-        projectTU.getTask().setName(ptuDto.getTaskName());
-        projectTU.getTask().setStructure(ptuDto.getTaskStructure());
-        projectTU.getTask().setCategory(ptuDto.getTaskCategory());
+        if(ptuDto.getTaskNumber() != null && ptuDto.getTaskName() !=null && ptuDto.getTaskStructure() != null && ptuDto.getTaskCategory() != null){
+            projectTU.getTask().setNumber(ptuDto.getTaskNumber());
+            projectTU.getTask().setName(ptuDto.getTaskName());
+            projectTU.getTask().setStructure(ptuDto.getTaskStructure());
+            projectTU.getTask().setCategory(ptuDto.getTaskCategory());
+        } else {
+            int taskId = projectTU.getTask().getId();
+            Task task = taskService.findById(taskId)
+                    .orElseThrow();
+            projectTU.getTask().setNumber(task.getNumber());
+            projectTU.getTask().setName(task.getName());
+            projectTU.getTask().setStructure(task.getStructure());
+            projectTU.getTask().setCategory(task.getCategory());
+
+
+        }
+
         projectTU.getTask().setStatus(ptuDto.getTaskStatus());
         projectTU.getTask().setComments(ptuDto.getComments());
         try {
