@@ -41,4 +41,9 @@ public class ProjectTaskUserServiceImpl implements ProjectTaskUserService {
     public Optional<ProjectTaskUser> findById(int id) {
         return projectTaskUserRepository.findById(id);
     }
+
+    @Override
+    public void deleteTaskUser(ProjectTaskUser projectTaskUser) {
+        projectTaskUserRepository.delete(projectTaskUser);
+    }
 }

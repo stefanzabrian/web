@@ -171,5 +171,15 @@ public class ProjectTaskUserController {
 
         return "redirect:/viewProject/" + projectTU.getProject().getId();
     }
+    @GetMapping("/deleteTask/{id}")
+    public String deleteTaskById(@PathVariable("id") int id) {
+        Task existingTask = taskService.findById(id).orElseThrow();
+        ProjectTaskUser existingProjectTaskUser = projectTUService.findByTask(existingTask).orElseThrow();
+        taskService.deleteTask(existingTask);
+        projectTUService.deleteTaskUser(existingProjectTaskUser);
+        Project existingProject = existingProjectTaskUser.getProject();
+        return "redirect:/viewProject/" + existingProject.getId();
+    }
+
 
 }

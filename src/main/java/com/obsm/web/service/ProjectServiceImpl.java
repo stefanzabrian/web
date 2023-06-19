@@ -1,6 +1,7 @@
 package com.obsm.web.service;
 
 import com.obsm.web.model.Project;
+import com.obsm.web.model.Task;
 import com.obsm.web.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 

@@ -29,4 +29,9 @@ public class TaskServiceImpl implements TaskService {
     public Optional<Task> findById(int id) {
         return taskRepository.findById(id);
     }
+
+    @Override
+    public void deleteTask(Task task) {
+        taskRepository.delete(task);
+    }
 }

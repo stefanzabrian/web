@@ -25,13 +25,17 @@ public class SecurityConfiguration {
                 .requestMatchers("/updateProduct/**").hasAuthority("ADMIN")
                 .requestMatchers("/addProduct").hasAuthority("ADMIN")
                 .requestMatchers("/deleteProduct/**").hasAuthority("ADMIN")
-                .requestMatchers("/portal").hasAnyAuthority("ADMIN","MODERATOR")
-                .requestMatchers("/addProject").hasAuthority("ADMIN")
-                .requestMatchers("/addTask").hasAuthority("ADMIN")
                 .requestMatchers("/view-all-orders").hasAuthority("ADMIN")
                 .requestMatchers("/admin-view-order/**").hasAuthority("ADMIN")
                 .requestMatchers("/update-order/**").hasAuthority("ADMIN")
                 .requestMatchers("/admin-delete-order/**").hasAuthority("ADMIN")
+
+                .requestMatchers("/portal").hasAnyAuthority("ADMIN","MODERATOR")
+                .requestMatchers("/addProject").hasAuthority("ADMIN")
+                .requestMatchers("/addTask").hasAuthority("ADMIN")
+                .requestMatchers("/addProjectTaskUser/**").hasAuthority("ADMIN")
+
+                .requestMatchers("/deleteTask/**").hasAuthority("ADMIN")
                 // public access
                 .requestMatchers(
                         "/shopping-cart-add/**",

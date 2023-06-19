@@ -13,5 +13,6 @@ public interface ProjectTaskUserService {
     List<ProjectTaskUser> findAllByProject(Project project);
     Optional<ProjectTaskUser> findByTask(Task task);
     Optional<ProjectTaskUser> findById(int id);
+    void deleteTaskUser(ProjectTaskUser projectTaskUser);
 
 }
