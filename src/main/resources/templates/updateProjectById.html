@@ -170,163 +170,156 @@
     </div>
 
 
-    <!--Page Content-->
     <div id="layoutSidenav_content">
-        <!--Page Content-->
-        <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-            <nav class="navbar navbar-expand navbar-dark bg-dark">
-                <div class="text-bg-dark p-3">Project Information</div>
-                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/addProject}" type="button" class="btn btn-dark">Add New</a>
-            </nav>
+        <main>
+            <div class="container-fluid px-4">
+                <h1 th:if="${param.success}" class="mt-4">You just updated a new Project!</h1>
+                <h1 th:if="!${param.success}" class="mt-4">Update Project</h1>
+                <h1 th:if="${param.error}" class="mt-4">Oops...</h1>
 
-            <!--<div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-                <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-                    <nav class="navbar navbar-expand navbar-dark bg-dark">
-                        <p class="lead fw-normal text-bg-dark mb-0" th:text="'&#160;&#160;' + ${project.name}"></p>
-                    </nav>
-                    <div class="card-body">
-                        <div class="card" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-                            <div class="card-body">
-                                <h5 class="card-title">Description</h5>
-                                <p class="card-text" th:text="${project.description}"></p>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <ol class="breadcrumb mb-4">
+                        <li th:if="!${param.success}" class="breadcrumb-item active">Build your project from scratch
+                            :)
+                        </li>
+                    </ol>
+                    <div>
+                        <form th:action="@{/updateProjectById/{id}(id=${project.id})}" th:object="${project}"
+                              method="post" class="user">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="name">Name</label>
+                                    <input type="text" th:field="*{name}" id="name" name="name"
+                                           class="form-control form-control-user" placeholder="Name of project">
+                                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="price">Price</label>
+                                    <input type="text" th:field="*{price}" id="price" name="price"
+                                           class="form-control form-control-user"
+                                           placeholder="Price of project"></input>
+                                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+                                          class="text-danger"></span>
+                                </div>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item" th:text="'Type: ' + ${project.type}"></li>
-                                <li class="list-group-item" th:text="'Priority: ' + ${project.priority}">Priority</li>
-                                <li class="list-group-item" th:text="'Status: ' + ${project.status}">Status</li>
-                                <li class="list-group-item" th:text="'Category: ' + ${project.category}">Category</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">Edit</a>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea type="text" th:field="*{description}" id="description" name="description"
+                                          class="form-control form-control-user" placeholder="Description"></textarea>
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                      class="text-danger"></span>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
 
+                            <div class="form-group row">
 
-            </div>-->
-
-
-            <table class="table align-middle mb-0 bg-white">
-                <thead class="bg-light">
-                <tr>
-                    <th>Name & Description</th>
-                    <th>Type & Category</th>
-                    <th>Status</th>
-                    <th>Priority</th>
-                    <th>Start Date & End Date</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <div class="ms-3">
-                                <p th:text="${project.getName()}" class="fw-bold mb-1"></p>
-                                <p th:text="${project.getDescription()}" class="text-muted mb-0"></p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p th:text="${project.getType()}" class="fw-normal mb-1"></p>
-                        <p th:text="${project.getCategory()}" class="text-muted mb-0"></p>
-                    </td>
-                    <td>
-                        <span th:text="${project.getStatus()}" class="badge badge-success rounded-pill d-inline"></span>
-                    </td>
-                    <td th:text="${project.getPriority()}"></td>
-                    <td>
-                        <p th:text="${project.getStartDate()}" class="fw-normal mb-1"></p>
-                        <p th:text="${project.getEndDate()}" class="fw-normal mb-1"></p>
-                    </td>
-                    <td>
-                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/updateProjectById/{id}(id=${project.id})}" type="button" class="btn btn-link btn-sm btn-rounded">
-                            Edit
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-
-        </div>
-
-      <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-          <nav class="navbar navbar-expand navbar-dark bg-dark">
-                <div class="text-bg-dark p-3">Overview</div>
-            </nav>
-            <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-                <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-                    <nav class="navbar navbar-expand navbar-dark bg-dark">
-                        <div class="text-bg-dark p-3">Tasks</div>
-                        <hr>
-                        <a sec:authorize="hasAuthority('ADMIN')" type="button" class="btn btn-dark" th:href="'/addProjectTaskUser/' +${project.getId()}">Add New</a>
-                    </nav>
-                    <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th scope="col">Nr</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Structure</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Asignee</th>
-                                <th scope="col">Comments</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="task : ${taskMap.entrySet()}">
-                                <td th:text="${task.key.number}"></td>
-                                <td th:text="${task.key.name}"></td>
-                                <td th:text="${task.key.structure}"></td>
-                                <td th:text="${task.key.status}"></td>
-                                <td th:if="${task.value.fistName != null && task.value.lastName != null}"
-                                    th:text="${task.value.fistName} + ' ' + ${task.value.lastName}"></td>
-                                <td th:text="${task.key.comments}"></td>
-                                <td>
-                                    <div class="btn-group navbar-dark bg-dark" role="group" aria-label="Basic example">
-                                        <a th:href="'/viewTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">View</a>
-                                        <a th:href="'/updateTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">Update</a>
-                                        <a sec:authorize="hasAuthority('ADMIN')" th:href="'/deleteTask/' + ${task.key.id}" type="button" class="btn btn-primary text-bg-dark p">Delete</a>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="type">Type</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="type" name="type">
+                                            <option>--Select a Type--</option>
+                                            <option th:each="type : ${types}" th:value="${type.name()}"
+                                                    th:text="${type}"
+                                                    th:selected="${project.type == type}"></option>
+                                        </select>
                                     </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card mb-4" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
-                    <nav class="navbar navbar-expand navbar-dark bg-dark">
-                        <div class="text-bg-dark p-3">All Employees</div>
-                    </nav>
-                    <div class="card-body" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+                                    <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"
+                                          class="text-danger"></span>
+                                </div>
 
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Phone Number</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="employee : ${employees}">
-                                <td th:text="${employee.userProfile.fistName} + ' ' + ${employee.userProfile.lastName}"></td>
-                                <td th:text="${employee.phoneNumber}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                <div class="col-sm-6">
+                                    <label for="category">Category</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="category" name="category">
+                                            <option>--Select a Category--</option>
+                                            <option th:each="category : ${categories}" th:value="${category.name()}"
+                                                    th:text="${category}"
+                                                    th:selected="${project.category == category}"></option>
+                                        </select>
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"
+                                          class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="status">Status</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="status" name="status">
+                                            <option>--Select a Status--</option>
+                                            <option th:each="status : ${statuses}" th:value="${status.name()}"
+                                                    th:text="${status}"
+                                                    th:selected="${project.status == status}"></option>
+                                        </select>
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}"
+                                          class="text-danger"></span>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="priority">Priority</label>
+                                    <div class="dropdown">
+                                        <select class="form-control" id="priority" name="priority">
+                                            <option>--Select a Priority--</option>
+                                            <option th:each="priority : ${priorities}" th:value="${priority.name()}"
+                                                    th:text="${priority}"
+                                                    th:selected="${project.priority == priority}"></option>
+                                        </select>
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"
+                                          class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="startDate">Start Date</label>
+                                    <input type="text" th:field="*{startDate}" id="startDate" name="startDate"
+                                           class="form-control form-control-user" placeholder="Example: 5/25/2029">
+                                    <span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="endDate">End Date</label>
+                                    <input type="text" th:field="*{endDate}" id="endDate" name="endDate"
+                                           class="form-control form-control-user"
+                                           placeholder="Example: 5/25/2031"></input>
+                                    <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"
+                                          class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+                            <hr>
+                            <input type="submit" value="Save Project" class="btn btn-primary btn-user btn-block">
+                            <hr>
+                            <!--<a href="index.html" class="btn btn-google btn-user btn-block">
+                              <i class="fab fa-google fa-fw"></i> Register with Google
+                            </a>-->
+                            <a th:href="@{/portal}" class="btn btn-facebook btn-user btn-block">
+                                </i> Home Page
+                            </a>
+                        </form>
                     </div>
+
                 </div>
+                <!-- /.container-fluid -->
+
+
             </div>
-        </div>
+        </main>
     </div>
-
-
-</div>
 </div>
 
 

@@ -202,7 +202,7 @@
                         <td>
                             <div class="btn-group navbar-dark bg-dark" role="group" aria-label="Basic example">
                                 <a th:href="'/viewProject/' +${project.id}" type="button" class="btn btn-primary text-bg-dark p">View</a>
-                                <button type="button" class="btn btn-primary text-bg-dark p">Delete</button>
+                                <a sec:authorize="hasAuthority('ADMIN')" th:href="'/deleteProjectById/' +${project.id}" type="button" class="btn btn-primary text-bg-dark p">Delete</a>
                             </div>
                         </td>
                         <td th:text="${project.name}"></td>

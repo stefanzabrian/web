@@ -15,4 +15,5 @@ public interface ProjectTaskUserService {
     Optional<ProjectTaskUser> findById(int id);
     void deleteTaskUser(ProjectTaskUser projectTaskUser);
 
+
 }

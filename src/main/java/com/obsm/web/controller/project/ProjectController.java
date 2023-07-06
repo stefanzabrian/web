@@ -4,6 +4,7 @@ import com.obsm.web.model.*;
 import com.obsm.web.model.constant.*;
 import com.obsm.web.service.ProjectService;
 import com.obsm.web.service.ProjectTaskUserService;
+import com.obsm.web.service.TaskService;
 import com.obsm.web.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,15 @@ public class ProjectController {
     private final UserService userService;
     private final ProjectService projectService;
     private final ProjectTaskUserService projectTaskUserService;
+    private final TaskService taskService;
 
     public ProjectController(UserService userService,
                              ProjectService projectService,
-                             ProjectTaskUserService projectTaskUserService) {
+                             ProjectTaskUserService projectTaskUserService, TaskService taskService) {
         this.userService = userService;
         this.projectService = projectService;
         this.projectTaskUserService = projectTaskUserService;
+        this.taskService = taskService;
     }
 
     @GetMapping("/addProject")
@@ -88,18 +91,7 @@ public class ProjectController {
     public String showViewAllProjectsPage(Model model) {
 
         List<Project> projects = projectService.findAll();
-        /*
-        List<ProjectCategory> categories = Arrays.asList(ProjectCategory.values());
-        List<ProjectPriority> priorities = Arrays.asList(ProjectPriority.values());
-        List<ProjectStatus> statuses = Arrays.asList(ProjectStatus.values());
-        List<ProjectType> types = Arrays.asList(ProjectType.values());*/
-
         model.addAttribute("projects", projects);
-       /*
-        model.addAttribute("categories", categories);
-        model.addAttribute("priorities", priorities);
-        model.addAttribute("statuses", statuses);
-        model.addAttribute("types", types);*/
 
         return "viewAllProjects";
     }
@@ -125,5 +117,49 @@ public class ProjectController {
         return "viewProject";
     }
 
+    @GetMapping("/updateProjectById/{id}")
+    public String showUpdateProjectByIdPage(@PathVariable("id") int id,
+                                    Model model) {
+        Project projectFound = projectService.findById(id).orElseThrow();
+        model.addAttribute("project", projectFound);
+
+        return "updateProjectById";
+    }
+
+    @PostMapping("/updateProjectById/{id}")
+    public String updateProjectById(@PathVariable("id") int id , Project project, BindingResult result)
+    {
+        if (result.hasErrors()){
+            return "updateProjectById";
+        }
+        Project projectFound = projectService.findById(id).orElseThrow();
+        projectFound.setId(project.getId());
+        projectFound.setName(project.getName());
+        projectFound.setPrice(project.getPrice());
+        projectFound.setDescription(project.getDescription());
+        projectFound.setType(project.getType());
+        projectFound.setCategory(project.getCategory());
+        projectFound.setStatus(project.getStatus());
+        projectFound.setStartDate(project.getStartDate());
+        projectFound.setEndDate(project.getEndDate());
+
+        projectService.save(project);
+
+        return "redirect:/viewProject/" + project.getId();
+    }
+
+    @GetMapping("/deleteProjectById/{id}")
+    public String deleteProjectById(@PathVariable("id") int id) {
+        Project projectFound = projectService.findById(id).orElseThrow();
+        List<ProjectTaskUser> projectTaskUser = projectTaskUserService.findAllByProject(projectFound);
+
+        for(ProjectTaskUser projectTU : projectTaskUser){
+            taskService.deleteTask(projectTU.getTask());
+            projectTaskUserService.deleteTaskUser(projectTU);
+        }
+        projectService.delete(projectFound);
+
+        return "redirect:/viewAllProjects";
+    }
 
 }

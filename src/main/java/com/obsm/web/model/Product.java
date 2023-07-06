@@ -25,16 +25,49 @@ public class Product {
     private String description;
     @Column(name = "price")
     private Double price;
+    @Column(name = "main_img_url")
+    private String mainImgUrl;
+    @Column(name = "second_img_url")
+    private String secondImgUrl;
+    @Column(name = "third_img_url")
+    private String thirdImgUrl;
 
     public Product() {
     }
 
-    public Product(String name, ProductModel model, ProductCategory category, String description, Double price) {
+    public Product(String name, ProductModel model, ProductCategory category, String description, Double price, String mainImgUrl, String secondImgUrl, String thirdImgUrl) {
         this.name = name;
         this.model = model;
         this.category = category;
         this.description = description;
         this.price = price;
+        this.mainImgUrl = mainImgUrl;
+        this.secondImgUrl = secondImgUrl;
+        this.thirdImgUrl = thirdImgUrl;
+    }
+
+    public String getMainImgUrl() {
+        return mainImgUrl;
+    }
+
+    public void setMainImgUrl(String mainImgUrl) {
+        this.mainImgUrl = mainImgUrl;
+    }
+
+    public String getSecondImgUrl() {
+        return secondImgUrl;
+    }
+
+    public void setSecondImgUrl(String secondImgUrl) {
+        this.secondImgUrl = secondImgUrl;
+    }
+
+    public String getThirdImgUrl() {
+        return thirdImgUrl;
+    }
+
+    public void setThirdImgUrl(String thirdImgUrl) {
+        this.thirdImgUrl = thirdImgUrl;
     }
 
     public Integer getId() {

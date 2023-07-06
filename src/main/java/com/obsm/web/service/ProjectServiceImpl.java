@@ -30,4 +30,15 @@ public class ProjectServiceImpl implements ProjectService {
     public Optional<Project> findById(int id) {
         return projectRepository.findById(id);
     }
+
+    @Override
+    public void save(Project project) {
+        projectRepository.save(project);
+    }
+
+    @Override
+    public void delete(Project project) {
+        projectRepository.delete(project);
+    }
+
 }

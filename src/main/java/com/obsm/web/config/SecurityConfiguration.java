@@ -32,8 +32,11 @@ public class SecurityConfiguration {
 
                 .requestMatchers("/portal").hasAnyAuthority("ADMIN","MODERATOR")
                 .requestMatchers("/addProject").hasAuthority("ADMIN")
+                .requestMatchers("/updateProjectById/**").hasAuthority("ADMIN")
+                .requestMatchers("/deleteProjectById/**").hasAuthority("ADMIN")
                 .requestMatchers("/addTask").hasAuthority("ADMIN")
                 .requestMatchers("/addProjectTaskUser/**").hasAuthority("ADMIN")
+                .requestMatchers("/updateTask/**").hasAnyAuthority("ADMIN","MODERATOR")
 
                 .requestMatchers("/deleteTask/**").hasAuthority("ADMIN")
                 // public access

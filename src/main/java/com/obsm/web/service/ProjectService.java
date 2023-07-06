@@ -10,4 +10,6 @@ public interface ProjectService {
     void create(Project project);
     List<Project> findAll();
     Optional<Project> findById(int id);
+    void save(Project project);
+    void delete(Project project);
 }

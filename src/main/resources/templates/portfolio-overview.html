@@ -30,7 +30,7 @@
             <div th:each="product : ${products}" class="col-lg-6">
                 <hr>
                 <div class="position-relative">
-                    <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d"
+                    <img class="img-fluid rounded-3 mb-3" th:src="${product.secondImgUrl}"
                          alt="..."/>
                     <div>
                         <a class="h3 fw-bolder text-decoration-none link-dark stretched-link"
@@ -87,7 +87,7 @@
 <section class="py-5 bg-light">
     <div class="container px-5 my-5">
         <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
-        <a class="btn btn-lg btn-primary" href="#!">Contact us</a>
+        <a class="btn btn-lg btn-primary" th:href="@{/contact}">Contact us</a>
     </div>
 </section>
 

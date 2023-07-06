@@ -8,15 +8,15 @@
 <div th:replace="~{fragments/header :: header}"></div>
 
 
-<section class="h-100 gradient-custom">
-    <div class="container py-5">
-        <div class="row d-flex justify-content-center my-4">
-            <div class="col-md-8">
+<section class="h-100 gradient-custom" style="flex: 1; display: flex; flex-direction: column;">
+    <div class="container py-5" style="flex: 1;">
+        <div class="row d-flex justify-content-center my-4" style="flex-grow: 1;">
+            <div class="col-md-8" style="overflow-y: auto;">
                 <div class="card mb-4">
                     <div class="card-header py-3">
                         <h5 class="mb-0" th:text="'Cart - ' + ${products.size()} + ' items'"></h5>
                     </div>
-                    <div class="card-body" th:if="${!products.isEmpty()}">
+                    <div class="card-body"  th:if="${!products.isEmpty()}">
                         <!-- Single item -->
                         <div th:each="productAndQuantity : ${products.entrySet()}">
                             <div class="row">
@@ -24,7 +24,7 @@
                                     <!-- Image -->
                                     <div class="bg-image hover-overlay hover-zoom ripple rounded"
                                          data-mdb-ripple-color="light">
-                                        <img th:src="${productAndQuantity.getKey().getId()}"
+                                        <img th:src="${productAndQuantity.getKey().getSecondImgUrl()}"
                                              class="w-100"/>
                                         <a href="#!">
                                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
